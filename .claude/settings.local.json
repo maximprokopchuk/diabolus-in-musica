@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config:*)",
+      "Bash(npm config:*)",
+      "Bash(/usr/local/bin/npx --yes create-next-app@latest /tmp/dim-init --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(printf \"no\\\\nno\\\\n\")",
+      "Bash(yes \"no\")",
+      "Bash(npm install:*)",
+      "Bash(/usr/local/bin/npx --yes shadcn@latest init -d 2>&1)"
+    ]
+  }
+}
