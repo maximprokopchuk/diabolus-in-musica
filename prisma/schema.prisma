@@ -1,0 +1,170 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TheoryBlockType {
+  TEXT
+  IMAGE
+  NOTATION
+  CODE_EXAMPLE
+}
+
+enum Instrument {
+  GUITAR
+  BASS
+  PIANO
+  UKULELE
+  GENERAL
+}
+
+model User {
+  id             String         @id @default(cuid())
+  name           String?
+  email          String         @unique
+  hashedPassword String?
+  image          String?
+  role           Role           @default(USER)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  accounts     Account[]
+  sessions     Session[]
+  progress     UserProgress[]
+  chatMessages ChatMessage[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Lesson {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  description String?    @db.Text
+  instrument  Instrument @default(GUITAR)
+  order       Int        @default(0)
+  published   Boolean    @default(false)
+  imageUrl    String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  topics Topic[]
+
+  @@index([instrument, published, order])
+  @@map("lessons")
+}
+
+model Topic {
+  id          String   @id @default(cuid())
+  lessonId    String
+  title       String
+  slug        String
+  description String?  @db.Text
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  lesson       Lesson         @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  theoryBlocks TheoryBlock[]
+  progress     UserProgress[]
+  chatMessages ChatMessage[]
+
+  @@unique([lessonId, slug])
+  @@index([lessonId, order])
+  @@map("topics")
+}
+
+model TheoryBlock {
+  id        String          @id @default(cuid())
+  topicId   String
+  type      TheoryBlockType @default(TEXT)
+  content   String          @db.Text
+  order     Int             @default(0)
+  metadata  Json?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@index([topicId, order])
+  @@map("theory_blocks")
+}
+
+model UserProgress {
+  id          String    @id @default(cuid())
+  userId      String
+  topicId     String
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
+  @@map("user_progress")
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  topicId   String
+  role      String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@index([userId, topicId, createdAt])
+  @@map("chat_messages")
+}

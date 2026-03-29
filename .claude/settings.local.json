@@ -7,7 +7,14 @@
       "Bash(printf \"no\\\\nno\\\\n\")",
       "Bash(yes \"no\")",
       "Bash(npm install:*)",
-      "Bash(/usr/local/bin/npx --yes shadcn@latest init -d 2>&1)"
+      "Bash(/usr/local/bin/npx --yes shadcn@latest init -d 2>&1)",
+      "Bash(/usr/local/bin/npx --yes shadcn@latest add card input label dialog sheet tabs dropdown-menu avatar badge separator skeleton toast sonner textarea select switch table form scroll-area popover command --yes 2>&1)",
+      "Bash(/usr/local/bin/npx --yes shadcn@latest add card input label dialog sheet tabs dropdown-menu avatar badge separator skeleton sonner textarea select switch table form scroll-area popover command --yes 2>&1)",
+      "Bash(RTK_DISABLED=1 /usr/local/bin/npx next build --no-lint)",
+      "Bash(RTK_DISABLED=1 /usr/local/bin/npx next build)",
+      "Bash(openssl rand:*)",
+      "Bash(/usr/local/bin/npx prisma:*)",
+      "Bash(/usr/local/bin/npx tsx:*)"
     ]
   }
 }
