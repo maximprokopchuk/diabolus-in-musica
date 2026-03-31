@@ -14,7 +14,31 @@
       "Bash(RTK_DISABLED=1 /usr/local/bin/npx next build)",
       "Bash(openssl rand:*)",
       "Bash(/usr/local/bin/npx prisma:*)",
-      "Bash(/usr/local/bin/npx tsx:*)"
+      "Bash(/usr/local/bin/npx tsx:*)",
+      "Bash(wc:*)",
+      "Bash(python3:*)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(echo \"=== lessons-$f.ts ===\")",
+      "Read(//Users/maksimprokopcuk/repo/diabolus-in-musica/prisma/seed/**)",
+      "Bash(done)",
+      "Bash(./node_modules/.bin/tsx prisma/seed.ts)",
+      "Bash(node_modules/.bin/tsx prisma/seed.ts)",
+      "Bash(npx prisma:*)",
+      "Bash(node -e \":*)",
+      "Bash(./node_modules/.bin/prisma db:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(npm list:*)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" ./node_modules/.bin/prisma db push)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" ./node_modules/.bin/ts-node --compiler-options '{\"\"\"\"module\"\"\"\":\"\"\"\"CommonJS\"\"\"\"}' prisma/seed.ts)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" node_modules/.bin/tsx prisma/seed.ts)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" node_modules/.bin/tsx prisma/reseed.ts)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" node_modules/.bin/tsx prisma/seed.ts)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" ./node_modules/.bin/prisma db push --skip-generate)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" node_modules/.bin/tsx prisma/update-levels.ts)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" node_modules/.bin/tsx prisma/check-lessons.ts)"
     ]
   }
 }

@@ -17,11 +17,11 @@ export default withAuth(
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl;
 
-        // Admin and dashboard routes require auth
         if (
           pathname.startsWith("/admin") ||
           pathname.startsWith("/profile") ||
-          pathname.startsWith("/progress")
+          pathname.startsWith("/progress") ||
+          pathname.startsWith("/onboarding")
         ) {
           return !!token;
         }
@@ -33,5 +33,5 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ["/admin/:path*", "/profile/:path*", "/progress/:path*"],
+  matcher: ["/admin/:path*", "/profile/:path*", "/progress/:path*", "/onboarding"],
 };

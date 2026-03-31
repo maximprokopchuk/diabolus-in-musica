@@ -1,18 +1,22 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import type { LessonSeed } from "./seed-data";
+import { LESSON_LEVELS } from "./seed-data";
 
 const prisma = new PrismaClient();
 
 async function seedLesson(data: LessonSeed) {
   const lesson = await prisma.lesson.upsert({
     where: { slug: data.slug },
-    update: {},
+    update: {
+      level: data.level ?? LESSON_LEVELS[data.slug] ?? "beginner",
+    },
     create: {
       title: data.title,
       slug: data.slug,
       description: data.description,
       instrument: data.instrument,
+      level: data.level ?? LESSON_LEVELS[data.slug] ?? "beginner",
       order: data.order,
       published: true,
     },

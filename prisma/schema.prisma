@@ -25,18 +25,29 @@ enum Instrument {
   BASS
   PIANO
   UKULELE
+  DRUMS
   GENERAL
 }
 
+enum Level {
+  beginner
+  intermediate
+  advanced
+}
+
 model User {
-  id             String         @id @default(cuid())
-  name           String?
-  email          String         @unique
-  hashedPassword String?
-  image          String?
-  role           Role           @default(USER)
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
+  id                   String      @id @default(cuid())
+  name                 String?
+  email                String      @unique
+  emailVerified        DateTime?
+  hashedPassword       String?
+  image                String?
+  role                 Role        @default(USER)
+  preferredInstrument  Instrument?
+  preferredLevel       Level?
+  onboardingCompleted  Boolean     @default(false)
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
 
   accounts     Account[]
   sessions     Session[]
@@ -91,6 +102,7 @@ model Lesson {
   slug        String     @unique
   description String?    @db.Text
   instrument  Instrument @default(GUITAR)
+  level       Level      @default(beginner)
   order       Int        @default(0)
   published   Boolean    @default(false)
   imageUrl    String?

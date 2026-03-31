@@ -61,19 +61,33 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
-        // For OAuth users, role may not be on the user object — fetch from DB
-        const role = (user as unknown as { role?: string }).role;
-        if (role) {
-          token.role = role;
-        } else {
-          const dbUser = await db.user.findUnique({
-            where: { id: user.id },
-            select: { role: true },
-          });
-          token.role = dbUser?.role ?? "USER";
+      }
+      if (user || trigger === "update") {
+        const userId = (token.id ?? user?.id) as string | undefined;
+        if (userId) {
+          try {
+            const dbUser = await db.user.findUnique({
+              where: { id: userId },
+              select: {
+                role: true,
+                preferredInstrument: true,
+                preferredLevel: true,
+                onboardingCompleted: true,
+              },
+            });
+            if (dbUser) {
+              token.role = dbUser.role;
+              token.preferredInstrument = dbUser.preferredInstrument ?? null;
+              token.preferredLevel = dbUser.preferredLevel ?? null;
+              token.onboardingCompleted = dbUser.onboardingCompleted;
+            }
+          } catch {
+            // DB unavailable — keep existing token values
+            if (!token.role) token.role = "USER";
+          }
         }
       }
       return token;
@@ -82,6 +96,9 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
+        session.user.preferredInstrument = token.preferredInstrument as string | null;
+        session.user.preferredLevel = token.preferredLevel as string | null;
+        session.user.onboardingCompleted = token.onboardingCompleted as boolean;
       }
       return session;
     },

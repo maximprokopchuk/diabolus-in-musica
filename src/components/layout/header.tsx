@@ -11,23 +11,28 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Music, LogOut, User, BarChart3, Settings } from "lucide-react";
+import { LogOut, User, BarChart3, Settings } from "lucide-react";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { Logo } from "@/components/layout/logo";
 
 export function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <Music className="h-5 w-5" />
-          <span>Diabolus in Musica</span>
+        <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight">
+          <Logo className="h-5 w-5 text-primary" />
+          <span className="hidden sm:inline">Diabolus in Musica</span>
+          <span className="sm:hidden">DiM</span>
         </Link>
 
-        <nav className="flex items-center gap-4">
-          <Link href="/lessons" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <nav className="flex items-center gap-2">
+          <Link href="/lessons" className="text-sm text-muted-foreground hover:text-foreground transition-colors mr-2">
             Уроки
           </Link>
+
+          <ThemeToggle />
 
           {session?.user ? (
             <DropdownMenu>
@@ -38,10 +43,10 @@ export function Header() {
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <div className="px-2 py-1.5 text-sm">
-                  <p className="font-medium">{session.user.name}</p>
-                  <p className="text-muted-foreground text-xs">{session.user.email}</p>
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-2 py-2 text-sm">
+                  <p className="font-medium truncate">{session.user.name}</p>
+                  <p className="text-muted-foreground text-xs truncate">{session.user.email}</p>
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem render={<Link href="/profile" />}>

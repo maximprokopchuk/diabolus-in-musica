@@ -71,7 +71,7 @@ export default function RegisterPage() {
     });
 
     setLoading(false);
-    router.push("/lessons");
+    router.push("/onboarding");
     router.refresh();
   }
 
@@ -91,7 +91,7 @@ export default function RegisterPage() {
           disabled={googleLoading}
           onClick={() => {
             setGoogleLoading(true);
-            signIn("google", { callbackUrl: "/lessons" });
+            signIn("google", { callbackUrl: "/onboarding" });
           }}
         >
           <GoogleIcon className="size-4" />
