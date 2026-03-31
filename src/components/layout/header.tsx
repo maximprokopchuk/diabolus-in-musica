@@ -19,16 +19,16 @@ export function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 animate-in fade-in slide-in-from-top-2 duration-300">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight">
+        <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
           <Logo className="h-5 w-5 text-primary" />
           <span className="hidden sm:inline">Diabolus in Musica</span>
           <span className="sm:hidden">DiM</span>
         </Link>
 
         <nav className="flex items-center gap-2">
-          <Link href="/lessons" className="text-sm text-muted-foreground hover:text-foreground transition-colors mr-2">
+          <Link href="/lessons" className="text-sm text-muted-foreground hover:text-foreground hover:scale-[1.03] active:scale-[0.97] inline-block transition-all mr-2">
             Уроки
           </Link>
 

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Diabolus in Musica — Теория музыки для гитаристов",
+    default: "Diabolus in Musica — Теория музыки",
     template: "%s | Diabolus in Musica",
   },
   description: "Изучайте теорию музыки с AI-ассистентом. Уроки, упражнения и интерактивный чат.",

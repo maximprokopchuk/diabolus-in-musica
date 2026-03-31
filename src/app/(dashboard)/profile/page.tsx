@@ -55,10 +55,10 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-3xl font-bold mb-8">Профиль</h1>
+      <h1 className="text-3xl font-bold mb-8 animate-in fade-in slide-in-from-bottom-3 duration-500">Профиль</h1>
 
       {/* User info */}
-      <Card className="mb-6">
+      <Card className="mb-6 animate-in fade-in slide-in-from-bottom-2 duration-400" style={{ animationDelay: "75ms" }}>
         <CardHeader>
           <div className="flex items-center gap-4">
             <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold text-primary">
@@ -76,7 +76,7 @@ export default function ProfilePage() {
       </Card>
 
       {/* Preferences */}
-      <Card>
+      <Card className="animate-in fade-in slide-in-from-bottom-2 duration-400" style={{ animationDelay: "150ms" }}>
         <CardHeader>
           <CardTitle>Настройки обучения</CardTitle>
           <CardDescription>Влияет на порядок уроков и фильтр по умолчанию</CardDescription>
@@ -94,15 +94,16 @@ export default function ProfilePage() {
               <div>
                 <p className="text-sm font-medium mb-3">Инструмент</p>
                 <div className="grid grid-cols-2 gap-2">
-                  {INSTRUMENTS.slice(0, 4).map((inst) => (
+                  {INSTRUMENTS.slice(0, 4).map((inst, i) => (
                     <button
                       key={inst.id}
                       onClick={() => setInstrument(inst.id)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border text-sm text-left transition-all ${
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border text-sm text-left transition-all animate-in fade-in zoom-in-95 duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                         instrument === inst.id
                           ? "border-primary bg-primary/10 text-foreground"
                           : "border-border hover:border-primary/40 hover:bg-muted/50 text-muted-foreground"
                       }`}
+                      style={{ animationDelay: `${i * 60}ms` }}
                     >
                       <span className="text-lg">{inst.emoji}</span>
                       <span className="font-medium">{inst.label}</span>
@@ -137,11 +138,12 @@ export default function ProfilePage() {
                     <button
                       key={lvl.id}
                       onClick={() => setLevel(lvl.id)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border text-sm text-left transition-all ${
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border text-sm text-left transition-all animate-in fade-in slide-in-from-bottom-1 duration-300 hover:scale-[1.01] active:scale-[0.99] ${
                         level === lvl.id
                           ? "border-primary bg-primary/10 text-foreground"
                           : "border-border hover:border-primary/40 hover:bg-muted/50 text-muted-foreground"
                       }`}
+                      style={{ animationDelay: `${180 + i * 60}ms` }}
                     >
                       <div className="flex gap-0.5 shrink-0">
                         {Array.from({ length: 3 }).map((_, dot) => (

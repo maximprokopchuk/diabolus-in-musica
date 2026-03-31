@@ -114,28 +114,31 @@ export default function LessonsPage() {
   return (
     <div className="container mx-auto px-4 py-10">
       <div className="flex flex-col sm:flex-row sm:items-end gap-4 mb-6">
-        <div className="flex-1">
+        <div className="flex-1 animate-in fade-in slide-in-from-bottom-3 duration-500">
           <h1 className="text-3xl font-bold mb-1">Уроки</h1>
           <p className="text-muted-foreground">
             {loading
               ? <span className="inline-block h-4 w-44 rounded bg-muted animate-pulse align-middle" />
-              : `${lessons.length} уроков по теории музыки`}
+              : `${displayLessons.length} уроков по теории музыки`}
           </p>
         </div>
-        <LessonsSearch onSearch={setQuery} />
+        <div className="animate-in fade-in slide-in-from-bottom-2 duration-500" style={{ animationDelay: "100ms" }}>
+          <LessonsSearch onSearch={setQuery} />
+        </div>
       </div>
 
       {/* Level filter */}
       <div className="flex items-center gap-2 mb-8 flex-wrap">
-        {LEVEL_OPTIONS.map((opt) => (
+        {LEVEL_OPTIONS.map((opt, i) => (
           <button
             key={opt.id}
             onClick={() => handleLevelChange(opt.id)}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border ${
+            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border animate-in fade-in slide-in-from-left-2 duration-300 hover:scale-[1.03] active:scale-[0.97] ${
               activeLevel === opt.id
                 ? "bg-primary text-primary-foreground border-primary"
                 : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
             }`}
+            style={{ animationDelay: `${i * 60}ms` }}
           >
             {opt.label}
           </button>
@@ -166,7 +169,7 @@ export default function LessonsPage() {
             <p className="text-muted-foreground py-10 text-center">Ничего не найдено по запросу «{query}»</p>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {(filtered ?? []).map((lesson) => {
+              {(filtered ?? []).map((lesson, idx) => {
                 const total = lesson.topics.length;
                 const completed = isLoggedIn
                   ? lesson.topics.filter((t) => t.progress?.some((p) => p.completed)).length
@@ -175,8 +178,13 @@ export default function LessonsPage() {
                 const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
                 const photoUrl = getPhotoUrl(lesson.instrument, lesson.order);
                 return (
-                  <Link key={lesson.id} href={`/lessons/${lesson.slug}`}>
-                    <Card className={`relative h-full overflow-hidden hover:border-primary/40 hover:shadow-md transition-all cursor-pointer group ${isDone ? "border-green-500/40" : ""}`}>
+                  <Link
+                    key={lesson.id}
+                    href={`/lessons/${lesson.slug}`}
+                    className="animate-in fade-in slide-in-from-bottom-2 duration-300"
+                    style={{ animationDelay: `${Math.min(idx * 50, 350)}ms` }}
+                  >
+                    <Card className={`relative h-full overflow-hidden hover:border-primary/40 hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer group ${isDone ? "border-green-500/40" : ""}`}>
                       <Image src={photoUrl} alt="" fill className="object-cover opacity-[0.12] dark:opacity-[0.18] group-hover:opacity-[0.20] dark:group-hover:opacity-[0.28] transition-opacity duration-300" sizes="400px" aria-hidden />
                       <CardHeader className="relative pb-2">
                         <div className="flex items-start justify-between gap-2 mb-1">
@@ -230,7 +238,7 @@ export default function LessonsPage() {
             <div key={instrument} ref={(el) => { sectionRefs.current[instrument] = el; }}>
               {instrument === preferredInstrument && (
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full animate-in fade-in zoom-in-90 duration-400">
                     Рекомендовано для вас
                   </span>
                 </div>
@@ -241,6 +249,7 @@ export default function LessonsPage() {
                 lessons={grouped[instrument]}
                 isLoggedIn={isLoggedIn}
                 userLevel={preferredLevel}
+                defaultOpen={!preferredInstrument || instrument === preferredInstrument}
               />
             </div>
           ))}

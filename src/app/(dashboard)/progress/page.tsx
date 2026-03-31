@@ -1,11 +1,12 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { Suspense } from "react";
 import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth-guard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { CheckCircle2, Circle, Trophy, Flame, ArrowRight } from "lucide-react";
+import { ProgressLevelFilter } from "@/components/progress/level-filter";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Прогресс" };
@@ -53,12 +54,32 @@ function calcStreak(completedDates: Date[]): number {
   return streak;
 }
 
-export default async function ProgressPage() {
+export default async function ProgressPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ level?: string }>;
+}) {
   const session = await getSession();
   if (!session?.user) redirect("/login");
 
+  const params = await searchParams;
+
+  const userPrefs = await db.user.findUnique({
+    where: { id: session.user.id },
+    select: { preferredLevel: true },
+  });
+
+  const VALID_LEVELS = ["beginner", "intermediate", "advanced"] as const;
+  type ValidLevel = (typeof VALID_LEVELS)[number];
+
+  const rawLevel = params.level ?? userPrefs?.preferredLevel ?? "all";
+  const activeLevel = VALID_LEVELS.includes(rawLevel as ValidLevel) ? rawLevel : "all";
+
   const lessons = await db.lesson.findMany({
-    where: { published: true },
+    where: {
+      published: true,
+      ...(activeLevel !== "all" ? { level: activeLevel as ValidLevel } : {}),
+    },
     include: {
       topics: {
         orderBy: { order: "asc" },
@@ -101,14 +122,14 @@ export default async function ProgressPage() {
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
-        <div>
+        <div className="animate-in fade-in slide-in-from-bottom-3 duration-500">
           <h1 className="text-3xl font-bold mb-1">Мой прогресс</h1>
           <p className="text-muted-foreground italic text-sm">{motivational}</p>
         </div>
         {lastProgress && (
           <Link
             href={`/lessons/${lastProgress.topic.lesson.slug}/${lastProgress.topic.slug}`}
-            className="shrink-0 inline-flex items-center gap-1.5 h-8 px-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium whitespace-nowrap hover:bg-primary/90 transition-colors"
+            className="shrink-0 inline-flex items-center gap-1.5 h-8 px-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium whitespace-nowrap hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all animate-in fade-in slide-in-from-bottom-2 duration-500 delay-150"
           >
             Продолжить
             <ArrowRight className="h-4 w-4" />
@@ -116,21 +137,26 @@ export default async function ProgressPage() {
         )}
       </div>
 
+      {/* Level filter */}
+      <Suspense>
+        <ProgressLevelFilter active={activeLevel} />
+      </Suspense>
+
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-        <Card className="text-center">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "0ms" }}>
           <CardContent className="pt-5 pb-4">
             <div className="text-3xl font-bold text-primary mb-1">{totalPercent}%</div>
             <div className="text-xs text-muted-foreground">Общий прогресс</div>
           </CardContent>
         </Card>
-        <Card className="text-center">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "75ms" }}>
           <CardContent className="pt-5 pb-4">
             <div className="text-3xl font-bold mb-1">{totalCompleted}</div>
             <div className="text-xs text-muted-foreground">Тем пройдено</div>
           </CardContent>
         </Card>
-        <Card className="text-center">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "150ms" }}>
           <CardContent className="pt-5 pb-4">
             <div className="text-3xl font-bold mb-1 flex items-center justify-center gap-1">
               {streak > 0 && <Flame className="h-6 w-6 text-orange-500" />}
@@ -141,7 +167,7 @@ export default async function ProgressPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="text-center">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "225ms" }}>
           <CardContent className="pt-5 pb-4">
             <div className="text-3xl font-bold mb-1 flex items-center justify-center gap-1">
               {completedLessons > 0 && <Trophy className="h-6 w-6 text-yellow-500" />}
@@ -153,7 +179,7 @@ export default async function ProgressPage() {
       </div>
 
       {/* Global progress bar */}
-      <div className="mb-10">
+      <div className="mb-10 animate-in fade-in slide-in-from-bottom-2 duration-400" style={{ animationDelay: "300ms" }}>
         <div className="flex justify-between text-sm text-muted-foreground mb-2">
           <span>Общий прогресс</span>
           <span>{totalCompleted} / {totalTopics}</span>
@@ -170,14 +196,19 @@ export default async function ProgressPage() {
         <Card className="mb-8 border-primary/20 bg-primary/5">
           <CardContent className="pt-5 pb-4 text-center">
             <p className="text-sm text-muted-foreground mb-3">Вы ещё не прошли ни одной темы. Начните прямо сейчас!</p>
-            <Button size="sm" render={<Link href="/lessons" />}>Перейти к урокам</Button>
+            <Link
+              href="/lessons"
+              className="inline-flex items-center gap-1.5 h-7 px-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium whitespace-nowrap hover:bg-primary/90 transition-colors"
+            >
+              Перейти к урокам
+            </Link>
           </CardContent>
         </Card>
       )}
 
       {/* Per-lesson breakdown */}
       <div className="space-y-4">
-        {lessons.map((lesson) => {
+        {lessons.map((lesson, lessonIdx) => {
           const total = lesson.topics.length;
           const completed = lesson.topics.filter((t) => t.progress.some((p) => p.completed)).length;
           const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -185,7 +216,11 @@ export default async function ProgressPage() {
           if (completed === 0) return null;
 
           return (
-            <Card key={lesson.id} className={isDone ? "border-green-500/30" : ""}>
+            <Card
+              key={lesson.id}
+              className={`animate-in fade-in slide-in-from-bottom-2 duration-300 ${isDone ? "border-green-500/30" : ""}`}
+              style={{ animationDelay: `${Math.min(lessonIdx * 75, 400)}ms` }}
+            >
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3 min-w-0">

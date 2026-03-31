@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -76,31 +76,54 @@ export function LessonGroup({
   lessons,
   isLoggedIn,
   userLevel,
+  defaultOpen = false,
 }: {
   instrument: string;
   label: string;
   lessons: Lesson[];
   isLoggedIn: boolean;
   userLevel?: string | null;
+  defaultOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(true);
+  const storageKey = `lesson_section_open_${instrument}`;
+
+  // Lazy init: read localStorage synchronously on first render (client-only) to avoid flicker
+  const [open, setOpen] = useState(() => {
+    if (typeof window === "undefined") return defaultOpen;
+    const stored = localStorage.getItem(`lesson_section_open_${instrument}`);
+    return stored !== null ? stored === "true" : defaultOpen;
+  });
+
+  // Sync if defaultOpen prop changes (e.g. preferredInstrument loaded async)
+  useEffect(() => {
+    const stored = localStorage.getItem(storageKey);
+    if (stored === null) {
+      setOpen(defaultOpen);
+    }
+  }, [instrument, defaultOpen, storageKey]);
+
+  function toggle() {
+    const next = !open;
+    setOpen(next);
+    localStorage.setItem(storageKey, String(next));
+  }
 
   return (
     <section>
       <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-3 w-full mb-5 text-left"
+        onClick={toggle}
+        className="flex items-center gap-3 w-full mb-5 text-left cursor-pointer"
       >
         <h2 className="text-lg font-semibold">{label}</h2>
         <div className="flex-1 h-px bg-border" />
         <span className="text-xs text-muted-foreground">{lessons.length} уроков</span>
         <ChevronDown
-          className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${open ? "" : "-rotate-90"}`}
+          className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ease-in-out ${open ? "rotate-0" : "-rotate-90"}`}
         />
       </button>
 
       {open && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 animate-in fade-in slide-in-from-bottom-2 duration-250">
           {lessons.map((lesson, idx) => {
             const total = lesson.topics.length;
             const completed = isLoggedIn
@@ -116,9 +139,14 @@ export function LessonGroup({
             const isBelowLevel = userLevelOrder !== null && lessonLevelOrder < userLevelOrder;
 
             return (
-              <Link key={lesson.id} href={`/lessons/${lesson.slug}`}>
+              <Link
+                key={lesson.id}
+                href={`/lessons/${lesson.slug}`}
+                className="animate-in fade-in slide-in-from-bottom-2 duration-300"
+                style={{ animationDelay: `${Math.min(idx * 60, 360)}ms` }}
+              >
                 <Card
-                  className={`relative h-full overflow-hidden hover:border-primary/40 hover:shadow-md transition-all cursor-pointer group
+                  className={`relative h-full overflow-hidden hover:border-primary/40 hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer group
                     ${isDone ? "border-green-500/40" : ""}
                     ${isRelevant && !isDone ? "border-l-2 border-l-primary/60" : ""}
                     ${isBelowLevel ? "opacity-60 grayscale-30 hover:opacity-90 hover:grayscale-0" : ""}
