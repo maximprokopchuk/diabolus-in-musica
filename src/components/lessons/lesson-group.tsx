@@ -114,11 +114,11 @@ export function LessonGroup({
         onClick={toggle}
         className="flex items-center gap-3 w-full mb-5 text-left cursor-pointer"
       >
-        <h2 className="text-lg font-semibold">{label}</h2>
+        <h2 className="text-lg font-semibold dark:text-white">{label}</h2>
         <div className="flex-1 h-px bg-border" />
-        <span className="text-xs text-muted-foreground">{lessons.length} уроков</span>
+        <span className="text-xs text-muted-foreground dark:text-white/55">{lessons.length} уроков</span>
         <ChevronDown
-          className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ease-in-out ${open ? "rotate-0" : "-rotate-90"}`}
+          className={`h-4 w-4 text-muted-foreground dark:text-white/55 transition-transform duration-300 ease-in-out ${open ? "rotate-0" : "-rotate-90"}`}
         />
       </button>
 

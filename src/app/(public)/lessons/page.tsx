@@ -158,7 +158,7 @@ export default function LessonsPage() {
       <div className="flex flex-col sm:flex-row sm:items-end gap-4 mb-6">
         <div className="flex-1 animate-in fade-in slide-in-from-bottom-3 duration-500">
           <h1 className="text-3xl font-bold mb-1.5 tracking-tight">Уроки</h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground dark:text-white/65">
             {loading
               ? <span className="inline-block h-4 w-44 rounded bg-muted animate-pulse align-middle" />
               : `${displayLessons.length} уроков по теории музыки`}
