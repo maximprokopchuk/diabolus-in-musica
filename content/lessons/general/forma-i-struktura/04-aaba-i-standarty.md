@@ -27,7 +27,7 @@ A (8 тактов) — A (8 тактов) — B (8 тактов) — A (8 так
 |----------|-------------|-------------|
 | «I Got Rhythm» | Bb | Основа «Rhythm Changes» |
 | «Somewhere Over the Rainbow» | Eb | Классический Tin Pan Alley |
-| «Take the A Train» | C | Тема Дюка Эллингтона |
+| «Take the A Train» | C | Тема Билли Стрейхорна (оркестр Эллингтона) |
 | «Satin Doll» | C | С ii-V оборотами |
 | «Yesterday» (Beatles) | F | Поп-адаптация AABA |
 
@@ -39,7 +39,7 @@ A (8 тактов) — A (8 тактов) — B (8 тактов) — A (8 так
 A (8) — B (8) — A (8) — C (8)
 ```
 
-Пример: «Stella by Starlight», «All the Things You Are».
+Пример: «Stella by Starlight», «White Christmas».
 
 ### Through-composed (сквозная)
 

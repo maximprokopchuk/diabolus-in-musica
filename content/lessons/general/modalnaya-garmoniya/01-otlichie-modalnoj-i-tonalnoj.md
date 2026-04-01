@@ -34,7 +34,7 @@ order: 1
 
 ## Примеры модальной музыки
 
-- **«So What»** (Miles Davis) — дорийский, 16 тактов Dm7, 8 тактов Ebm7, 8 тактов Dm7
+- **«So What»** (Miles Davis) — дорийский, AABA: 8 тактов Dm7 (A) + 8 тактов Dm7 (A) + 8 тактов Ebm7 (B) + 8 тактов Dm7 (A)
 - **«Impressions»** (John Coltrane) — та же структура, другая мелодия
 - **«Eleanor Rigby»** (Beatles) — эолийский
 - **«Norwegian Wood»** (Beatles) — миксолидийский
