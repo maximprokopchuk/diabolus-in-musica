@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls:*)",
+      "Bash(find /Users/maksimprokopcuk/repo/diabolus-in-musica -maxdepth 2 -name tailwind.config.* -o -name .env*)"
+    ]
+  }
+}
