@@ -180,7 +180,7 @@ export function LessonGroup({
                         {isDone ? (
                           <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0" />
                         ) : (
-                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <span className="text-xs text-muted-foreground dark:text-white/50 flex items-center gap-1">
                             <BookOpen className="h-3 w-3" />
                             {total}
                           </span>
@@ -190,9 +190,9 @@ export function LessonGroup({
 
                     {/* Title + description */}
                     <div className="flex-1">
-                      <p className="font-semibold text-base leading-snug mb-1.5">{lesson.title}</p>
+                      <p className="font-semibold text-base leading-snug mb-1.5 text-foreground dark:text-white">{lesson.title}</p>
                       {lesson.description && (
-                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                        <p className="text-sm text-muted-foreground dark:text-white/60 line-clamp-2 leading-relaxed">
                           {lesson.description}
                         </p>
                       )}

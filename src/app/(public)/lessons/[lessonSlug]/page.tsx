@@ -174,9 +174,9 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonS
                     )}
                   </div>
                   <div className="flex-1 flex flex-col justify-end">
-                    <p className="font-semibold text-sm leading-snug mb-1">{topic.title}</p>
+                    <p className="font-semibold text-sm leading-snug mb-1 text-foreground dark:text-white">{topic.title}</p>
                     {topic.description && (
-                      <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{topic.description}</p>
+                      <p className="text-xs text-muted-foreground dark:text-white/60 line-clamp-2 leading-relaxed">{topic.description}</p>
                     )}
                   </div>
                 </div>

@@ -244,9 +244,9 @@ export default function LessonsPage() {
                           </div>
                         </div>
                         <div className="flex-1">
-                          <p className="font-semibold text-base leading-snug mb-1.5">{lesson.title}</p>
+                          <p className="font-semibold text-base leading-snug mb-1.5 text-foreground dark:text-white">{lesson.title}</p>
                           {lesson.description && (
-                            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{lesson.description}</p>
+                            <p className="text-sm text-muted-foreground dark:text-white/60 line-clamp-2 leading-relaxed">{lesson.description}</p>
                           )}
                         </div>
                         {isLoggedIn && total > 0 && (
