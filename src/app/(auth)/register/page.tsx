@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Music } from "lucide-react";
+import { Logo } from "@/components/layout/logo";
 
 function GoogleIcon({ className }: { className?: string }) {
   return (
@@ -76,57 +76,90 @@ export default function RegisterPage() {
   }
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <div className="flex justify-center mb-2">
-          <Music className="h-8 w-8" />
+    <Card className="shadow-xl shadow-black/5 ring-1 ring-foreground/8 dark:shadow-black/40">
+      <CardHeader className="text-center pb-2">
+        <div className="flex justify-center mb-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
+            <Logo className="h-6 w-6 text-primary" />
+          </div>
         </div>
-        <CardTitle>Регистрация</CardTitle>
-        <CardDescription>Создайте аккаунт для отслеживания прогресса</CardDescription>
+        <CardTitle className="text-xl font-semibold tracking-tight">Регистрация</CardTitle>
+        <CardDescription className="text-sm">Создайте аккаунт для отслеживания прогресса</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-4">
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full gap-2 h-9 transition-all duration-200 hover:bg-muted/60 hover:shadow-sm active:scale-[0.99]"
           disabled={googleLoading}
           onClick={() => {
             setGoogleLoading(true);
             signIn("google", { callbackUrl: "/onboarding" });
           }}
         >
-          <GoogleIcon className="size-4" />
+          <GoogleIcon className="size-4 shrink-0" />
           {googleLoading ? "Перенаправление..." : "Продолжить с Google"}
         </Button>
 
-        <div className="relative my-4 flex items-center">
+        <div className="relative my-5 flex items-center gap-3">
           <Separator className="flex-1" />
-          <span className="px-3 text-xs text-muted-foreground">или</span>
+          <span className="text-xs text-muted-foreground">или</span>
           <Separator className="flex-1" />
         </div>
 
         <form onSubmit={onSubmit} className="space-y-4">
           {error && (
-            <p className="text-sm text-destructive text-center">{error}</p>
+            <p className="text-sm text-destructive text-center bg-destructive/8 rounded-lg px-3 py-2 animate-in fade-in duration-200">
+              {error}
+            </p>
           )}
-          <div className="space-y-2">
-            <Label htmlFor="name">Имя</Label>
-            <Input id="name" name="name" required minLength={2} />
+          <div className="space-y-1.5">
+            <Label htmlFor="name" className="text-sm font-medium">Имя</Label>
+            <Input
+              id="name"
+              name="name"
+              required
+              minLength={2}
+              placeholder="Ваше имя"
+              className="h-9 transition-shadow duration-200 focus-visible:shadow-sm"
+            />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" required />
+          <div className="space-y-1.5">
+            <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="name@example.com"
+              className="h-9 transition-shadow duration-200 focus-visible:shadow-sm"
+            />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Пароль</Label>
-            <Input id="password" name="password" type="password" required minLength={6} />
+          <div className="space-y-1.5">
+            <Label htmlFor="password" className="text-sm font-medium">Пароль</Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              required
+              minLength={6}
+              placeholder="Минимум 6 символов"
+              className="h-9 transition-shadow duration-200 focus-visible:shadow-sm"
+            />
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button
+            type="submit"
+            className="w-full h-9 font-medium transition-all duration-200 hover:brightness-110 active:scale-[0.99]"
+            disabled={loading}
+          >
             {loading ? "Создание..." : "Создать аккаунт"}
           </Button>
         </form>
-        <p className="text-sm text-center text-muted-foreground mt-4">
+        <p className="text-sm text-center text-muted-foreground mt-5">
           Уже есть аккаунт?{" "}
-          <Link href="/login" className="text-primary hover:underline">
+          <Link
+            href="/login"
+            className="text-primary font-medium hover:underline underline-offset-4 transition-colors"
+          >
             Войти
           </Link>
         </p>

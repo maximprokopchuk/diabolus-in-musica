@@ -67,8 +67,8 @@ export default async function TopicPage({
   };
 
   return (
-    <div className="container mx-auto px-4 py-10 max-w-3xl">
-      <div className="text-sm text-muted-foreground mb-6 animate-in fade-in slide-in-from-top-2 duration-300">
+    <div className="container mx-auto px-4 py-12 max-w-3xl">
+      <div className="text-sm text-muted-foreground mb-8 animate-in fade-in slide-in-from-top-2 duration-300">
         <Link href="/lessons" className="hover:text-foreground">
           Уроки
         </Link>
@@ -83,9 +83,9 @@ export default async function TopicPage({
         <span className="text-foreground">{topic.title}</span>
       </div>
 
-      <h1 className="text-3xl font-bold mb-2 animate-in fade-in slide-in-from-bottom-4 duration-500">{topic.title}</h1>
+      <h1 className="text-3xl font-bold mb-2.5 animate-in fade-in slide-in-from-bottom-4 duration-500 tracking-tight">{topic.title}</h1>
       {topic.description && (
-        <p className="text-muted-foreground mb-6 animate-in fade-in slide-in-from-bottom-3 duration-500 delay-100">{topic.description}</p>
+        <p className="text-foreground/60 dark:text-muted-foreground mb-6 text-base leading-relaxed animate-in fade-in slide-in-from-bottom-3 duration-500 delay-100">{topic.description}</p>
       )}
 
       <Separator className="mb-8" />

@@ -145,36 +145,36 @@ export default async function ProgressPage({
 
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "0ms" }}>
-          <CardContent className="pt-5 pb-4">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300 shadow-sm border-primary/20 bg-primary/3 dark:bg-card dark:border-border" style={{ animationDelay: "0ms" }}>
+          <CardContent className="pt-6 pb-5">
             <div className="text-3xl font-bold text-primary mb-1">{totalPercent}%</div>
-            <div className="text-xs text-muted-foreground">Общий прогресс</div>
+            <div className="text-xs text-muted-foreground font-medium">Общий прогресс</div>
           </CardContent>
         </Card>
-        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "75ms" }}>
-          <CardContent className="pt-5 pb-4">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300 shadow-sm dark:bg-card dark:border-border" style={{ animationDelay: "75ms" }}>
+          <CardContent className="pt-6 pb-5">
             <div className="text-3xl font-bold mb-1">{totalCompleted}</div>
-            <div className="text-xs text-muted-foreground">Тем пройдено</div>
+            <div className="text-xs text-muted-foreground font-medium">Тем пройдено</div>
           </CardContent>
         </Card>
-        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "150ms" }}>
-          <CardContent className="pt-5 pb-4">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300 shadow-sm dark:bg-card dark:border-border" style={{ animationDelay: "150ms" }}>
+          <CardContent className="pt-6 pb-5">
             <div className="text-3xl font-bold mb-1 flex items-center justify-center gap-1">
               {streak > 0 && <Flame className="h-6 w-6 text-orange-500" />}
               {streak}
             </div>
-            <div className="text-xs text-muted-foreground">
+            <div className="text-xs text-muted-foreground font-medium">
               {streak === 1 ? "День подряд" : streak > 1 ? "Дней подряд" : "Стрик"}
             </div>
           </CardContent>
         </Card>
-        <Card className="text-center animate-in fade-in zoom-in-95 duration-300" style={{ animationDelay: "225ms" }}>
-          <CardContent className="pt-5 pb-4">
+        <Card className="text-center animate-in fade-in zoom-in-95 duration-300 shadow-sm dark:bg-card dark:border-border" style={{ animationDelay: "225ms" }}>
+          <CardContent className="pt-6 pb-5">
             <div className="text-3xl font-bold mb-1 flex items-center justify-center gap-1">
               {completedLessons > 0 && <Trophy className="h-6 w-6 text-yellow-500" />}
               {completedLessons}
             </div>
-            <div className="text-xs text-muted-foreground">Уроков завершено</div>
+            <div className="text-xs text-muted-foreground font-medium">Уроков завершено</div>
           </CardContent>
         </Card>
       </div>
@@ -194,7 +194,7 @@ export default async function ProgressPage({
       </div>
 
       {totalCompleted === 0 && (
-        <Card className="mb-8 border-primary/20 bg-primary/5">
+        <Card className="mb-8 border-primary/20 dark:border-primary/30 bg-primary/5 dark:bg-primary/8">
           <CardContent className="pt-5 pb-4 text-center">
             <p className="text-sm text-muted-foreground mb-3">Вы ещё не прошли ни одной темы. Начните прямо сейчас!</p>
             <Link
@@ -221,7 +221,7 @@ export default async function ProgressPage({
           return (
             <Card
               key={lesson.slug}
-              className={`animate-in fade-in slide-in-from-bottom-2 duration-300 ${isDone ? "border-green-500/30" : ""}`}
+              className={`animate-in fade-in slide-in-from-bottom-2 duration-300 dark:border-border ${isDone ? "border-green-500/30 dark:border-green-500/25" : ""}`}
               style={{ animationDelay: `${Math.min(lessonIdx * 75, 400)}ms` }}
             >
               <CardHeader className="pb-3">

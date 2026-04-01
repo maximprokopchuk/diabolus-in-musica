@@ -19,16 +19,16 @@ export function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 animate-in fade-in slide-in-from-top-2 duration-300">
+    <header className="border-b border-border/50 dark:border-border/70 bg-background/80 dark:bg-background/75 backdrop-blur-md supports-backdrop-filter:bg-background/70 dark:supports-backdrop-filter:bg-background/65 sticky top-0 z-50 animate-in fade-in slide-in-from-top-2 duration-300 shadow-sm shadow-black/3 dark:shadow-black/20">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center gap-2.5 font-bold text-lg tracking-tight hover:opacity-75 transition-opacity duration-200">
           <Logo className="h-5 w-5 text-primary" />
           <span className="hidden sm:inline">Diabolus in Musica</span>
           <span className="sm:hidden">DiM</span>
         </Link>
 
         <nav className="flex items-center gap-2">
-          <Link href="/lessons" className="text-sm text-muted-foreground hover:text-foreground hover:scale-[1.03] active:scale-[0.97] inline-block transition-all mr-2">
+          <Link href="/lessons" className="text-sm text-muted-foreground hover:text-foreground hover:scale-[1.03] active:scale-[0.97] inline-block transition-all duration-150 mr-2">
             Уроки
           </Link>
 
@@ -36,9 +36,9 @@ export function Header() {
 
           {session?.user ? (
             <DropdownMenu>
-              <DropdownMenuTrigger render={<Button variant="ghost" className="relative h-8 w-8 rounded-full" />}>
-                <Avatar className="h-8 w-8">
-                  <AvatarFallback>
+              <DropdownMenuTrigger render={<Button variant="ghost" className="relative h-8 w-8 rounded-full p-0 hover:ring-2 hover:ring-primary/20 transition-all duration-200" />}>
+                <Avatar className="h-8 w-8 ring-1 ring-border">
+                  <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
                     {session.user.name?.[0]?.toUpperCase() || "U"}
                   </AvatarFallback>
                 </Avatar>

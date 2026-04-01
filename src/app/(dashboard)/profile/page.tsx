@@ -60,7 +60,7 @@ export default function ProfilePage() {
       <h1 className="text-3xl font-bold mb-8 animate-in fade-in slide-in-from-bottom-3 duration-500">Профиль</h1>
 
       {/* User info */}
-      <Card className="mb-6 animate-in fade-in slide-in-from-bottom-2 duration-400" style={{ animationDelay: "75ms" }}>
+      <Card className="mb-6 animate-in fade-in slide-in-from-bottom-2 duration-400 dark:border-border" style={{ animationDelay: "75ms" }}>
         <CardHeader>
           <div className="flex items-center gap-4">
             <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold text-primary">
@@ -78,7 +78,7 @@ export default function ProfilePage() {
       </Card>
 
       {/* Preferences */}
-      <Card className="animate-in fade-in slide-in-from-bottom-2 duration-400" style={{ animationDelay: "150ms" }}>
+      <Card className="animate-in fade-in slide-in-from-bottom-2 duration-400 dark:border-border" style={{ animationDelay: "150ms" }}>
         <CardHeader>
           <CardTitle>Настройки обучения</CardTitle>
           <CardDescription>Влияет на порядок уроков и фильтр по умолчанию</CardDescription>
@@ -102,8 +102,8 @@ export default function ProfilePage() {
                       onClick={() => setInstrument(inst.id)}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border text-sm text-left transition-all animate-in fade-in zoom-in-95 duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                         instrument === inst.id
-                          ? "border-primary bg-primary/10 text-foreground"
-                          : "border-border hover:border-primary/40 hover:bg-muted/50 text-muted-foreground"
+                          ? "border-primary bg-primary/10 dark:bg-primary/15 text-foreground"
+                          : "border-border hover:border-primary/40 hover:bg-muted/50 dark:hover:bg-muted text-muted-foreground"
                       }`}
                       style={{ animationDelay: `${i * 60}ms` }}
                     >
@@ -142,8 +142,8 @@ export default function ProfilePage() {
                       onClick={() => setLevel(lvl.id)}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border text-sm text-left transition-all animate-in fade-in slide-in-from-bottom-1 duration-300 hover:scale-[1.01] active:scale-[0.99] ${
                         level === lvl.id
-                          ? "border-primary bg-primary/10 text-foreground"
-                          : "border-border hover:border-primary/40 hover:bg-muted/50 text-muted-foreground"
+                          ? "border-primary bg-primary/10 dark:bg-primary/15 text-foreground"
+                          : "border-border hover:border-primary/40 hover:bg-muted/50 dark:hover:bg-muted text-muted-foreground"
                       }`}
                       style={{ animationDelay: `${180 + i * 60}ms` }}
                     >
@@ -169,8 +169,8 @@ export default function ProfilePage() {
                   onClick={() => setShowAllLevels(!showAllLevels)}
                   className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl border text-sm text-left transition-all hover:scale-[1.01] active:scale-[0.99] ${
                     showAllLevels
-                      ? "border-primary bg-primary/10 text-foreground"
-                      : "border-border hover:border-primary/40 hover:bg-muted/50 text-muted-foreground"
+                      ? "border-primary bg-primary/10 dark:bg-primary/15 text-foreground"
+                      : "border-border hover:border-primary/40 hover:bg-muted/50 dark:hover:bg-muted text-muted-foreground"
                   }`}
                 >
                   <Eye className="h-4 w-4 shrink-0" />

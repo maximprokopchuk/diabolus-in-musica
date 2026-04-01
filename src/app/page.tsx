@@ -30,13 +30,13 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative py-24 md:py-40 overflow-hidden">
-        {/* Radial gradient spotlight */}
+      <section className="relative py-24 md:py-44 overflow-hidden">
+        {/* Radial gradient spotlight — more visible in light mode */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-primary/8 blur-3xl" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[560px] rounded-full bg-primary/10 dark:bg-primary/14 blur-3xl" />
         </div>
 
-        {/* Decorative staff lines */}
+        {/* Decorative staff lines — slightly more visible in light mode */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
           {[0, 12, 24, 36, 48].map((offset) => (
             <div
@@ -51,8 +51,8 @@ export default async function HomePage() {
           {/* Logo mark */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="absolute inset-0 rounded-full blur-2xl bg-primary/25 scale-[2]" />
-              <div className="relative rounded-full bg-primary/10 border border-primary/20 p-5">
+              <div className="absolute inset-0 rounded-full blur-2xl bg-primary/20 dark:bg-primary/35 scale-[2.2]" />
+              <div className="relative rounded-full bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/30 p-5 shadow-sm">
                 <Logo className="h-14 w-14 text-primary" />
               </div>
             </div>
@@ -62,14 +62,14 @@ export default async function HomePage() {
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-5">
             <span className="text-primary">Diabolus</span>
             {" "}
-            <span className="text-foreground/80">in Musica</span>
+            <span className="text-foreground/75">in Musica</span>
           </h1>
 
           {/* Tagline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-3">
+          <p className="text-lg md:text-xl text-foreground/55 dark:text-muted-foreground max-w-xl mx-auto mb-3 font-medium">
             Теория музыки для музыкантов
           </p>
-          <p className="text-sm text-muted-foreground/70 max-w-lg mx-auto mb-10">
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-lg mx-auto mb-10">
             От нот и интервалов до сложных гармонических концепций —
             с интерактивными уроками и AI-ассистентом.
           </p>
@@ -99,9 +99,9 @@ export default async function HomePage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {features.map((feature) => (
-              <Card key={feature.title} className="border-border/60 hover:border-primary/30 transition-colors">
+              <Card key={feature.title} className="border-border hover:border-primary/30 dark:hover:border-primary/40 dark:bg-card/80 shadow-sm hover:shadow-md transition-all duration-300">
                 <CardHeader>
-                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 mb-3">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/15 mb-3 shadow-sm">
                     <feature.icon className="h-5 w-5 text-primary" />
                   </div>
                   <CardTitle className="text-base">{feature.title}</CardTitle>

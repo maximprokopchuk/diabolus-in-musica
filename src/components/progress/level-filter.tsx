@@ -34,10 +34,10 @@ export function ProgressLevelFilter({ active }: { active: string }) {
           key={opt.id}
           onClick={() => handleChange(opt.id)}
           disabled={pending}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer ${
+          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border cursor-pointer ${
             active === opt.id
-              ? "bg-primary text-primary-foreground border-primary"
-              : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+              ? "bg-primary text-primary-foreground border-primary shadow-sm"
+              : "border-border bg-card text-foreground/60 hover:border-primary/40 hover:text-foreground hover:bg-card"
           } ${pending ? "opacity-60 cursor-wait" : ""}`}
         >
           {opt.label}

@@ -154,10 +154,10 @@ export default function LessonsPage() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="container mx-auto px-4 py-12">
       <div className="flex flex-col sm:flex-row sm:items-end gap-4 mb-6">
         <div className="flex-1 animate-in fade-in slide-in-from-bottom-3 duration-500">
-          <h1 className="text-3xl font-bold mb-1">Уроки</h1>
+          <h1 className="text-3xl font-bold mb-1.5 tracking-tight">Уроки</h1>
           <p className="text-muted-foreground">
             {loading
               ? <span className="inline-block h-4 w-44 rounded bg-muted animate-pulse align-middle" />
@@ -177,8 +177,8 @@ export default function LessonsPage() {
             onClick={() => handleLevelChange(opt.id)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border animate-in fade-in slide-in-from-left-2 duration-300 hover:scale-[1.03] active:scale-[0.97] ${
               activeLevel === opt.id
-                ? "bg-primary text-primary-foreground border-primary"
-                : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                : "border-border bg-card text-foreground/60 hover:border-primary/40 hover:text-foreground"
             }`}
             style={{ animationDelay: `${i * 60}ms` }}
           >
@@ -224,11 +224,11 @@ export default function LessonsPage() {
                     style={{ animationDelay: `${Math.min(idx * 50, 350)}ms` }}
                   >
                     <div className={`relative flex flex-col min-h-[200px] rounded-2xl overflow-hidden border cursor-pointer group transition-all duration-300
-                      hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]
-                      ${isDone ? "border-green-500/40 hover:border-green-500/60" : "border-border hover:border-primary/40"}
+                      shadow-sm hover:-translate-y-1 hover:shadow-[0_6px_24px_-4px_oklch(0_0_0/0.12)] dark:hover:shadow-[0_6px_24px_-4px_oklch(0_0_0/0.5)] active:scale-[0.99]
+                      ${isDone ? "border-green-500/40 hover:border-green-500/60 dark:border-green-500/30 dark:hover:border-green-500/50" : "border-border hover:border-primary/40 dark:hover:border-primary/50"}
                     `}>
-                      <Image src={photoUrl} alt="" fill className="object-cover opacity-30 dark:opacity-25 group-hover:opacity-40 dark:group-hover:opacity-35 group-hover:scale-105 transition-all duration-500" sizes="400px" aria-hidden />
-                      <div className="absolute inset-0 bg-linear-to-b from-background/30 via-background/60 to-background/95" />
+                      <Image src={photoUrl} alt="" fill className="object-cover opacity-45 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-55 group-hover:scale-105 transition-all duration-500" sizes="400px" aria-hidden />
+                      <div className="absolute inset-0 bg-linear-to-b from-card/5 via-card/50 to-card/95 dark:from-background/10 dark:via-background/45 dark:to-background/88" />
                       <div className="relative flex flex-col flex-1 p-5 gap-3">
                         <div className="flex items-start justify-between gap-2">
                           <span className="text-xs text-muted-foreground font-medium">{instrumentLabels[lesson.instrument]}</span>

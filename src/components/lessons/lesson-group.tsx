@@ -147,22 +147,22 @@ export function LessonGroup({
               >
                 <div
                   className={`relative flex flex-col min-h-[200px] rounded-2xl overflow-hidden border transition-all duration-300 cursor-pointer group
-                    hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]
-                    ${isDone ? "border-green-500/40 hover:border-green-500/60" : "border-border hover:border-primary/40"}
+                    shadow-sm hover:-translate-y-1 hover:shadow-[0_6px_24px_-4px_oklch(0_0_0/0.12)] dark:hover:shadow-[0_6px_24px_-4px_oklch(0_0_0/0.5)] active:scale-[0.99]
+                    ${isDone ? "border-green-500/40 hover:border-green-500/60 dark:border-green-500/30 dark:hover:border-green-500/50" : "border-border hover:border-primary/40 dark:hover:border-primary/50"}
                     ${isBelowLevel ? "opacity-60 hover:opacity-95" : ""}
                   `}
                 >
-                  {/* Background image — prominently visible */}
+                  {/* Background image — more vivid in light mode, subtler in dark */}
                   <Image
                     src={photoUrl}
                     alt=""
                     fill
-                    className="object-cover opacity-30 dark:opacity-25 group-hover:opacity-40 dark:group-hover:opacity-35 group-hover:scale-105 transition-all duration-500"
+                    className="object-cover opacity-45 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-55 group-hover:scale-105 transition-all duration-500"
                     sizes="400px"
                     aria-hidden
                   />
-                  {/* Gradient overlay — fades image into card bg at bottom */}
-                  <div className="absolute inset-0 bg-linear-to-b from-background/30 via-background/60 to-background/95" />
+                  {/* Gradient overlay: light mode fades card bg (white) at bottom for legibility */}
+                  <div className="absolute inset-0 bg-linear-to-b from-card/5 via-card/50 to-card/95 dark:from-background/10 dark:via-background/45 dark:to-background/88" />
                   {/* Left accent for relevant level */}
                   {isRelevant && !isDone && (
                     <div className="absolute left-0 top-4 bottom-4 w-0.5 rounded-full bg-primary/70" />
@@ -172,7 +172,7 @@ export function LessonGroup({
                   <div className="relative flex flex-col flex-1 p-5 gap-3">
                     {/* Top row */}
                     <div className="flex items-start justify-between gap-2">
-                      <span className="text-4xl font-black text-foreground/10 group-hover:text-primary/15 transition-colors leading-none select-none tabular-nums">
+                      <span className="text-4xl font-black text-foreground/10 dark:text-foreground/20 group-hover:text-primary/15 dark:group-hover:text-primary/25 transition-colors leading-none select-none tabular-nums">
                         {String(idx + 1).padStart(2, "0")}
                       </span>
                       <div className="flex items-center gap-2 pt-1">

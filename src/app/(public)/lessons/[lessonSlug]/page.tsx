@@ -150,21 +150,21 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonS
               style={{ animationDelay: `${index * 60}ms` }}
             >
               <div className={`relative flex flex-col min-h-[140px] rounded-2xl overflow-hidden border cursor-pointer group transition-all duration-300
-                hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]
-                ${isCompleted ? "border-green-500/40 hover:border-green-500/60" : "border-border hover:border-primary/40"}
+                shadow-sm hover:-translate-y-1 hover:shadow-[0_6px_24px_-4px_oklch(0_0_0/0.12)] dark:hover:shadow-[0_6px_24px_-4px_oklch(0_0_0/0.5)] active:scale-[0.99]
+                ${isCompleted ? "border-green-500/40 hover:border-green-500/60 dark:border-green-500/30 dark:hover:border-green-500/50" : "border-border hover:border-primary/40 dark:hover:border-primary/50"}
               `}>
                 <Image
                   src={photoUrl}
                   alt=""
                   fill
-                  className="object-cover opacity-30 dark:opacity-25 group-hover:opacity-40 dark:group-hover:opacity-35 group-hover:scale-105 transition-all duration-500"
+                  className="object-cover opacity-45 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-55 group-hover:scale-105 transition-all duration-500"
                   sizes="400px"
                   aria-hidden
                 />
-                <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/55 to-background/95" />
+                <div className="absolute inset-0 bg-linear-to-b from-card/5 via-card/48 to-card/95 dark:from-background/5 dark:via-background/40 dark:to-background/88" />
                 <div className="relative flex flex-col flex-1 p-5 gap-2">
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-3xl font-black text-foreground/10 group-hover:text-primary/15 transition-colors leading-none select-none tabular-nums">
+                    <span className="text-3xl font-black text-foreground/10 dark:text-foreground/20 group-hover:text-primary/15 dark:group-hover:text-primary/25 transition-colors leading-none select-none tabular-nums">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     {isCompleted ? (
