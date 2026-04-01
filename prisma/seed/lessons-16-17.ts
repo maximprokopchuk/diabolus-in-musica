@@ -489,7 +489,7 @@ D-A-D-G-B-E  (6-я струна опущена на тон)
 ### Open G
 
 \`\`\`
-D-G-D-G-B-D  (или G на басу: G-G-D-G-B-D)
+D-G-D-G-B-D  (Keith Richards часто снимал 6-ю струну и играл на 5 струнах: G-D-G-B-D)
 \`\`\`
 
 - Открытые струны = G мажор
@@ -524,7 +524,7 @@ C-G-C-G-C-E
 \`\`\`
 
 - Очень низкий бас, мощный резонанс
-- «Friends» (Led Zeppelin), Devin Townsend
+- Devin Townsend, John Butler Trio
 
 ## Пониженный строй
 
