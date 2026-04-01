@@ -8,7 +8,7 @@ export function Footer() {
           <Music className="h-4 w-4" />
           <span>Diabolus in Musica</span>
         </div>
-        <p>Теория музыки для гитаристов</p>
+        <p>Теория музыки</p>
       </div>
     </footer>
   );

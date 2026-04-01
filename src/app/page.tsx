@@ -67,7 +67,7 @@ export default async function HomePage() {
 
           {/* Tagline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-3">
-            Теория музыки для гитаристов
+            Теория музыки для музыкантов
           </p>
           <p className="text-sm text-muted-foreground/70 max-w-lg mx-auto mb-10">
             От нот и интервалов до сложных гармонических концепций —

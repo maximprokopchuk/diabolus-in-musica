@@ -1,41 +1,42 @@
 # Diabolus in Musica
 
-Приложение для обучения теории музыки для гитаристов.
+Приложение для изучения теории музыки с AI-ассистентом. Уроки по инструментам, интерактивный чат, трекинг прогресса.
 
-## Запуск
+## Стек
+
+- Next.js 16 (App Router) + TypeScript
+- Neon (serverless PostgreSQL) + Prisma
+- NextAuth.js (Google OAuth + credentials)
+- OpenRouter AI (Gemini Flash)
+- Tailwind CSS
+
+## Запуск локально
 
 ```bash
 npm install
+cp .env.example .env.local  # заполни переменные
 npx prisma db push
-npm run db:seed
-npm run dev -- -p 8000
+npm run dev
 ```
 
-## Настройка Google OAuth
-
-1. Перейди в [Google Cloud Console](https://console.cloud.google.com/)
-2. Создай проект (или выбери существующий)
-3. Перейди в **APIs & Services → Credentials**
-4. Нажми **Create Credentials → OAuth client ID**
-5. Тип: **Web application**
-6. Название: `Diabolus in Musica`
-7. **Authorized JavaScript origins**: `http://localhost:8000`
-8. **Authorized redirect URIs**: `http://localhost:8000/api/auth/callback/google`
-9. Скопируй **Client ID** и **Client Secret**
-10. Впиши их в `.env.local`:
+## Переменные окружения
 
 ```
-GOOGLE_CLIENT_ID="твой-client-id"
-GOOGLE_CLIENT_SECRET="твой-client-secret"
+DATABASE_URL=
+DIRECT_DATABASE_URL=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+OPENROUTER_API_KEY=
+AI_MODEL=google/gemini-2.0-flash-001
+GOOGLE_CLIENT_ID=      # опционально
+GOOGLE_CLIENT_SECRET=  # опционально
 ```
 
-11. Перезапусти dev-сервер
+## Деплой
 
-> Для продакшена добавь домен Vercel в origins и redirect URIs.
+Vercel + Neon. Добавь переменные окружения в настройках проекта на Vercel, установи `NEXTAUTH_URL` на production-домен.
 
-## Аккаунт администратора
-
+Для Google OAuth добавь в [Google Cloud Console](https://console.cloud.google.com/) redirect URI:
 ```
-Email: admin@diabolus.local
-Пароль: admin123
+https://твой-домен.vercel.app/api/auth/callback/google
 ```
