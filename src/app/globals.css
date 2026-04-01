@@ -3,7 +3,7 @@
 @import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -88,7 +88,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
+:root.dark, .dark {
   --background: oklch(0.15 0.005 265);
   --foreground: oklch(0.97 0 0);
   --card: oklch(0.21 0.006 265);
