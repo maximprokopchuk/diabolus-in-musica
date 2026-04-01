@@ -4,11 +4,13 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
+import { rateLimit } from "@/lib/rate-limit";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db) as NextAuthOptions["adapter"],
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60 * 24, // 24 hours
   },
   pages: {
     signIn: "/login",
@@ -31,6 +33,12 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Email and password required");
+        }
+
+        // Rate limit: 10 attempts per email per minute
+        const rl = rateLimit(`login:${credentials.email}`, 10, 60_000);
+        if (!rl.success) {
+          throw new Error("Слишком много попыток входа. Подождите немного.");
         }
 
         const user = await db.user.findUnique({
@@ -75,6 +83,7 @@ export const authOptions: NextAuthOptions = {
                 role: true,
                 preferredInstrument: true,
                 preferredLevel: true,
+                showAllLevels: true,
                 onboardingCompleted: true,
               },
             });
@@ -82,6 +91,7 @@ export const authOptions: NextAuthOptions = {
               token.role = dbUser.role;
               token.preferredInstrument = dbUser.preferredInstrument ?? null;
               token.preferredLevel = dbUser.preferredLevel ?? null;
+              token.showAllLevels = dbUser.showAllLevels;
               token.onboardingCompleted = dbUser.onboardingCompleted;
             }
           } catch {
@@ -98,6 +108,7 @@ export const authOptions: NextAuthOptions = {
         session.user.role = token.role as string;
         session.user.preferredInstrument = token.preferredInstrument as string | null;
         session.user.preferredLevel = token.preferredLevel as string | null;
+        session.user.showAllLevels = token.showAllLevels as boolean;
         session.user.onboardingCompleted = token.onboardingCompleted as boolean;
       }
       return session;

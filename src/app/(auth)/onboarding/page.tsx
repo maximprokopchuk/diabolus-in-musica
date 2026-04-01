@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/layout/logo";
 import { ChevronLeft } from "lucide-react";
@@ -29,27 +30,38 @@ function Spinner({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-async function savePreferences(instrument: string | null, level: string | null) {
-  await fetch("/api/user/preferences", {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ preferredInstrument: instrument, preferredLevel: level }),
-  });
-}
-
 export default function OnboardingPage() {
   const router = useRouter();
+  const { update } = useSession();
   const [step, setStep] = useState<"instrument" | "level">("instrument");
   const [instrument, setInstrument] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   async function handleFinish(skipLevel = false) {
     setSaving(true);
+    setSaveError(null);
     try {
-      await savePreferences(instrument, skipLevel ? null : level);
-    } catch {
-      // ignore, redirect anyway
+      const res = await fetch("/api/user/preferences", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          preferredInstrument: instrument,
+          preferredLevel: skipLevel ? null : level,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setSaveError(`Ошибка ${res.status}: ${data.error ?? "неизвестная ошибка"}`);
+        setSaving(false);
+        return;
+      }
+      await update();
+    } catch (e) {
+      setSaveError(e instanceof Error ? e.message : "Сетевая ошибка");
+      setSaving(false);
+      return;
     }
     window.location.href = "/lessons";
   }
@@ -66,6 +78,10 @@ export default function OnboardingPage() {
           <div className={`h-2 w-8 rounded-full transition-colors duration-300 ${step === "instrument" ? "bg-primary" : "bg-primary/40"}`} />
           <div className={`h-2 w-8 rounded-full transition-colors duration-300 ${step === "level" ? "bg-primary" : "bg-muted"}`} />
         </div>
+
+        {saveError && (
+          <p className="text-sm text-destructive text-center mb-4 bg-destructive/10 rounded-lg px-3 py-2">{saveError}</p>
+        )}
 
         {step === "instrument" && (
           <div className="animate-in fade-in slide-in-from-left-4 duration-200">

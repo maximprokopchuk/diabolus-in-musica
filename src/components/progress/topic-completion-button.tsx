@@ -6,10 +6,12 @@ import { CheckCircle, Circle, Sparkles } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export function TopicCompletionButton({
-  topicId,
+  lessonSlug,
+  topicSlug,
   initialCompleted,
 }: {
-  topicId: string;
+  lessonSlug: string;
+  topicSlug: string;
   initialCompleted: boolean;
 }) {
   const [completed, setCompleted] = useState(initialCompleted);
@@ -23,7 +25,7 @@ export function TopicCompletionButton({
       const res = await fetch("/api/progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topicId, completed: !completed }),
+        body: JSON.stringify({ lessonSlug, topicSlug, completed: !completed }),
       });
       if (res.ok) {
         const next = !completed;

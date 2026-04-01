@@ -9,46 +9,46 @@ import { LevelBadge, LEVEL_ORDER, type Level } from "@/components/lessons/level-
 
 const PHOTOS: Record<string, string[]> = {
   GENERAL: [
-    "photo-1507838153414-b4b713384a76",
-    "photo-1493225457124-a3eb161ffa5f",
-    "photo-1511379938547-c1f69419868d",
-    "photo-1514320291840-2e0a9bf2a9ae",
-    "photo-1505740420928-5e560c06d30e",
+    "photo-1507838153414-b4b713384a76","photo-1493225457124-a3eb161ffa5f","photo-1511379938547-c1f69419868d",
+    "photo-1514320291840-2e0a9bf2a9ae","photo-1505740420928-5e560c06d30e","photo-1487180144351-b8472da7d491",
+    "photo-1415201364774-f6f0bb35f28f","photo-1471478331149-c72f17e33c73","photo-1470225620780-dba8ba36b745",
+    "photo-1468164016595-6108e4c60c8b","photo-1483412033650-1015ddeb83d1","photo-1528489469914-0c3f5e9a8f8b",
+    "photo-1496293455970-f8581aae0e3b","photo-1524650359799-842906ca1c06","photo-1519677584237-752f8853252e",
   ],
   GUITAR: [
-    "photo-1510915361894-db8b60106cb1",
-    "photo-1525201548942-d8732f6617a0",
-    "photo-1558618666-fcd25c85cd64",
-    "photo-1564186763535-ebb21ef5277f",
-    "photo-1517841905240-472988babdf9",
+    "photo-1510915361894-db8b60106cb1","photo-1525201548942-d8732f6617a0","photo-1558618666-fcd25c85cd64",
+    "photo-1564186763535-ebb21ef5277f","photo-1517841905240-472988babdf9","photo-1541689592655-f5f52825a3b8",
+    "photo-1456513080510-7bf3a84b82f8","photo-1470229722913-7c0e2dbbafd3","photo-1542652694-40abf526446e",
+    "photo-1516924962500-2b4b3b99ea02","photo-1462965326201-d02e4f455804","photo-1519508234439-4f23643125c1",
+    "photo-1495653797063-114787b77b23","photo-1453090927415-5f45085b65c0","photo-1529518969858-8baa65152fc8",
   ],
   BASS: [
-    "photo-1516924962500-2b4b3b99ea02",
-    "photo-1519892300165-cb5542fb47c7",
-    "photo-1598488035139-bdbb2231ce04",
-    "photo-1456513080510-7bf3a84b82f8",
-    "photo-1511671782779-c97d3d27a1d4",
+    "photo-1516924962500-2b4b3b99ea02","photo-1519892300165-cb5542fb47c7","photo-1598488035139-bdbb2231ce04",
+    "photo-1456513080510-7bf3a84b82f8","photo-1511671782779-c97d3d27a1d4","photo-1525201548942-d8732f6617a0",
+    "photo-1510915361894-db8b60106cb1","photo-1526478806334-5fd488fcaabc","photo-1507838153414-b4b713384a76",
+    "photo-1574169208507-84376144848b","photo-1470229722913-7c0e2dbbafd3","photo-1564186763535-ebb21ef5277f",
+    "photo-1460723237483-7a6dc9d0b212","photo-1513883049090-d0b7439799bf","photo-1493225457124-a3eb161ffa5f",
   ],
   DRUMS: [
-    "photo-1524230659092-07f99a75c013",
-    "photo-1519892300165-cb5542fb47c7",
-    "photo-1461784121038-f088ca1e7714",
-    "photo-1459749411175-04bf5292ceea",
-    "photo-1470229538611-16ba8c7ffbd7",
+    "photo-1524230659092-07f99a75c013","photo-1461784121038-f088ca1e7714","photo-1459749411175-04bf5292ceea",
+    "photo-1470229538611-16ba8c7ffbd7","photo-1519892300165-cb5542fb47c7","photo-1519683109079-d5f539e1542f",
+    "photo-1511379938547-c1f69419868d","photo-1536902066851-5b8da52c5c7c","photo-1415201364774-f6f0bb35f28f",
+    "photo-1471478331149-c72f17e33c73","photo-1493225457124-a3eb161ffa5f","photo-1514320291840-2e0a9bf2a9ae",
+    "photo-1506157786151-b8491531f063","photo-1487180144351-b8472da7d491","photo-1470225620780-dba8ba36b745",
   ],
   PIANO: [
-    "photo-1520523839897-bd0b52f945a0",
-    "photo-1551969014-7d2c4cddf0b6",
-    "photo-1519683109079-d5f539e1542f",
-    "photo-1488190211105-8b0e65b80b4e",
-    "photo-1571019613454-1cb2f99b2d8b",
+    "photo-1520523839897-bd0b52f945a0","photo-1551969014-7d2c4cddf0b6","photo-1519683109079-d5f539e1542f",
+    "photo-1488190211105-8b0e65b80b4e","photo-1571019613454-1cb2f99b2d8b","photo-1468164016595-6108e4c60c8b",
+    "photo-1483412033650-1015ddeb83d1","photo-1507838153414-b4b713384a76","photo-1524650359799-842906ca1c06",
+    "photo-1489599849927-2ee91cede3ba","photo-1505740420928-5e560c06d30e","photo-1514320291840-2e0a9bf2a9ae",
+    "photo-1493225457124-a3eb161ffa5f","photo-1519677584237-752f8853252e","photo-1496293455970-f8581aae0e3b",
   ],
   UKULELE: [
-    "photo-1510915361894-db8b60106cb1",
-    "photo-1525201548942-d8732f6617a0",
-    "photo-1507838153414-b4b713384a76",
-    "photo-1493225457124-a3eb161ffa5f",
-    "photo-1511379938547-c1f69419868d",
+    "photo-1507838153414-b4b713384a76","photo-1525201548942-d8732f6617a0","photo-1510915361894-db8b60106cb1",
+    "photo-1511379938547-c1f69419868d","photo-1493225457124-a3eb161ffa5f","photo-1517841905240-472988babdf9",
+    "photo-1558618666-fcd25c85cd64","photo-1505740420928-5e560c06d30e","photo-1514320291840-2e0a9bf2a9ae",
+    "photo-1487180144351-b8472da7d491","photo-1541689592655-f5f52825a3b8","photo-1470229722913-7c0e2dbbafd3",
+    "photo-1468164016595-6108e4c60c8b","photo-1456513080510-7bf3a84b82f8","photo-1519892300165-cb5542fb47c7",
   ],
 };
 
@@ -145,27 +145,37 @@ export function LessonGroup({
                 className="animate-in fade-in slide-in-from-bottom-2 duration-300"
                 style={{ animationDelay: `${Math.min(idx * 60, 360)}ms` }}
               >
-                <Card
-                  className={`relative h-full overflow-hidden hover:border-primary/40 hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer group
-                    ${isDone ? "border-green-500/40" : ""}
-                    ${isRelevant && !isDone ? "border-l-2 border-l-primary/60" : ""}
-                    ${isBelowLevel ? "opacity-60 grayscale-30 hover:opacity-90 hover:grayscale-0" : ""}
+                <div
+                  className={`relative flex flex-col min-h-[200px] rounded-2xl overflow-hidden border transition-all duration-300 cursor-pointer group
+                    hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]
+                    ${isDone ? "border-green-500/40 hover:border-green-500/60" : "border-border hover:border-primary/40"}
+                    ${isBelowLevel ? "opacity-60 hover:opacity-95" : ""}
                   `}
                 >
+                  {/* Background image — prominently visible */}
                   <Image
                     src={photoUrl}
                     alt=""
                     fill
-                    className="object-cover opacity-[0.12] dark:opacity-[0.18] group-hover:opacity-[0.20] dark:group-hover:opacity-[0.28] transition-opacity duration-300"
+                    className="object-cover opacity-30 dark:opacity-25 group-hover:opacity-40 dark:group-hover:opacity-35 group-hover:scale-105 transition-all duration-500"
                     sizes="400px"
                     aria-hidden
                   />
-                  <CardHeader className="relative pb-2">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <span className="text-3xl font-bold text-muted-foreground/20 group-hover:text-primary/20 transition-colors leading-none select-none">
+                  {/* Gradient overlay — fades image into card bg at bottom */}
+                  <div className="absolute inset-0 bg-linear-to-b from-background/30 via-background/60 to-background/95" />
+                  {/* Left accent for relevant level */}
+                  {isRelevant && !isDone && (
+                    <div className="absolute left-0 top-4 bottom-4 w-0.5 rounded-full bg-primary/70" />
+                  )}
+
+                  {/* Content */}
+                  <div className="relative flex flex-col flex-1 p-5 gap-3">
+                    {/* Top row */}
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-4xl font-black text-foreground/10 group-hover:text-primary/15 transition-colors leading-none select-none tabular-nums">
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <div className="flex items-center gap-1.5 pt-0.5">
+                      <div className="flex items-center gap-2 pt-1">
                         <LevelBadge level={lesson.level} />
                         {isDone ? (
                           <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0" />
@@ -177,29 +187,35 @@ export function LessonGroup({
                         )}
                       </div>
                     </div>
-                    <CardTitle className="text-base leading-snug">{lesson.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="relative">
-                    <CardDescription className="line-clamp-2 text-sm mb-3">
-                      {lesson.description}
-                    </CardDescription>
+
+                    {/* Title + description */}
+                    <div className="flex-1">
+                      <p className="font-semibold text-base leading-snug mb-1.5">{lesson.title}</p>
+                      {lesson.description && (
+                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                          {lesson.description}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Progress */}
                     {isLoggedIn && total > 0 && (
                       isDone ? (
                         <span className="text-xs text-green-600 dark:text-green-400 font-medium">Урок пройден</span>
                       ) : completed > 0 ? (
-                        <div className="space-y-1">
+                        <div className="space-y-1.5">
                           <div className="flex justify-between text-xs text-muted-foreground">
                             <span>{completed} / {total}</span>
                             <span>{pct}%</span>
                           </div>
                           <div className="h-1 bg-muted rounded-full overflow-hidden">
-                            <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
+                            <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${pct}%` }} />
                           </div>
                         </div>
                       ) : null
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </Link>
             );
           })}

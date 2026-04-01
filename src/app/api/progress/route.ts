@@ -4,7 +4,8 @@ import { requireAuth, unauthorized } from "@/lib/auth-guard";
 import { z } from "zod";
 
 const progressSchema = z.object({
-  topicId: z.string().min(1),
+  lessonSlug: z.string().min(1),
+  topicSlug: z.string().min(1),
   completed: z.boolean(),
 });
 
@@ -18,11 +19,6 @@ export async function GET() {
 
   const progress = await db.userProgress.findMany({
     where: { userId: session.user.id },
-    include: {
-      topic: {
-        include: { lesson: { select: { id: true, title: true, slug: true } } },
-      },
-    },
   });
 
   return NextResponse.json(progress);
@@ -38,13 +34,14 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { topicId, completed } = progressSchema.parse(body);
+    const { lessonSlug, topicSlug, completed } = progressSchema.parse(body);
 
     const progress = await db.userProgress.upsert({
       where: {
-        userId_topicId: {
+        userId_lessonSlug_topicSlug: {
           userId: session.user.id,
-          topicId,
+          lessonSlug,
+          topicSlug,
         },
       },
       update: {
@@ -53,7 +50,8 @@ export async function POST(req: Request) {
       },
       create: {
         userId: session.user.id,
-        topicId,
+        lessonSlug,
+        topicSlug,
         completed,
         completedAt: completed ? new Date() : null,
       },

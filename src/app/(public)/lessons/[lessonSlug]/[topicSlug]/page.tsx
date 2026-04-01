@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { db } from "@/lib/db";
+import { getLessonBySlug, getTopicContent } from "@/lib/content";
 import { getSession } from "@/lib/auth-guard";
+import { db } from "@/lib/db";
 import { TheoryBlockRenderer } from "@/components/lessons/theory-block-renderer";
 import { TopicCompletionButton } from "@/components/progress/topic-completion-button";
 import { ChatPanel } from "@/components/chat/chat-panel";
@@ -17,11 +18,7 @@ export async function generateMetadata({
   params: Promise<{ lessonSlug: string; topicSlug: string }>;
 }) {
   const { lessonSlug, topicSlug } = await params;
-  const lesson = await db.lesson.findUnique({ where: { slug: lessonSlug } });
-  if (!lesson) return { title: "Тема" };
-  const topic = await db.topic.findUnique({
-    where: { lessonId_slug: { lessonId: lesson.id, slug: topicSlug } },
-  });
+  const topic = getTopicContent(lessonSlug, topicSlug);
   return { title: topic?.title || "Тема" };
 }
 
@@ -33,42 +30,45 @@ export default async function TopicPage({
   const { lessonSlug, topicSlug } = await params;
   const session = await getSession();
 
-  const lesson = await db.lesson.findUnique({
-    where: { slug: lessonSlug, published: true },
-    include: {
-      topics: { orderBy: { order: "asc" } },
-    },
-  });
-
+  const lesson = getLessonBySlug(lessonSlug);
   if (!lesson) notFound();
 
-  const topicIndex = lesson.topics.findIndex((t) => t.slug === topicSlug);
-  if (topicIndex === -1) notFound();
-
-  const topic = await db.topic.findUnique({
-    where: { lessonId_slug: { lessonId: lesson.id, slug: topicSlug } },
-    include: {
-      theoryBlocks: { orderBy: { order: "asc" } },
-      progress: session?.user
-        ? { where: { userId: session.user.id } }
-        : undefined,
-    },
-  });
-
+  const topic = getTopicContent(lessonSlug, topicSlug);
   if (!topic) notFound();
 
+  const topicIndex = lesson.topics.findIndex((t) => t.slug === topicSlug);
   const prevTopic = topicIndex > 0 ? lesson.topics[topicIndex - 1] : null;
   const nextTopic =
     topicIndex < lesson.topics.length - 1
       ? lesson.topics[topicIndex + 1]
       : null;
 
-  const isCompleted = topic.progress?.some((p) => p.completed) ?? false;
+  let isCompleted = false;
+  if (session?.user) {
+    const row = await db.userProgress.findUnique({
+      where: {
+        userId_lessonSlug_topicSlug: {
+          userId: session.user.id,
+          lessonSlug,
+          topicSlug,
+        },
+      },
+    });
+    isCompleted = row?.completed ?? false;
+  }
+
+  // TheoryBlockRenderer expects a block with { id, type, content, metadata }
+  // We adapt the markdown content into a single TEXT block
+  const block = {
+    id: `${lessonSlug}-${topicSlug}`,
+    type: "TEXT" as const,
+    content: topic.content,
+    metadata: null,
+  };
 
   return (
     <div className="container mx-auto px-4 py-10 max-w-3xl">
-      {/* Breadcrumb */}
-      <div className="text-sm text-muted-foreground mb-6">
+      <div className="text-sm text-muted-foreground mb-6 animate-in fade-in slide-in-from-top-2 duration-300">
         <Link href="/lessons" className="hover:text-foreground">
           Уроки
         </Link>
@@ -83,30 +83,20 @@ export default async function TopicPage({
         <span className="text-foreground">{topic.title}</span>
       </div>
 
-      <h1 className="text-3xl font-bold mb-2">{topic.title}</h1>
+      <h1 className="text-3xl font-bold mb-2 animate-in fade-in slide-in-from-bottom-4 duration-500">{topic.title}</h1>
       {topic.description && (
-        <p className="text-muted-foreground mb-6">{topic.description}</p>
+        <p className="text-muted-foreground mb-6 animate-in fade-in slide-in-from-bottom-3 duration-500 delay-100">{topic.description}</p>
       )}
 
       <Separator className="mb-8" />
 
-      {/* Theory Blocks */}
-      <div className="space-y-6">
-        {topic.theoryBlocks.map((block) => (
-          <TheoryBlockRenderer key={block.id} block={block} />
-        ))}
+      <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500 delay-200">
+        <TheoryBlockRenderer block={block} />
       </div>
-
-      {topic.theoryBlocks.length === 0 && (
-        <p className="text-muted-foreground py-8 text-center">
-          Контент этой темы ещё не добавлен.
-        </p>
-      )}
 
       <Separator className="my-8" />
 
-      {/* Progress + Navigation */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between animate-in fade-in slide-in-from-bottom-2 duration-400 delay-300">
         <div>
           {prevTopic && (
             <Button variant="ghost" render={<Link href={`/lessons/${lesson.slug}/${prevTopic.slug}`} />}>
@@ -118,7 +108,8 @@ export default async function TopicPage({
 
         {session?.user && (
           <TopicCompletionButton
-            topicId={topic.id}
+            lessonSlug={lessonSlug}
+            topicSlug={topicSlug}
             initialCompleted={isCompleted}
           />
         )}
@@ -133,8 +124,7 @@ export default async function TopicPage({
         </div>
       </div>
 
-      {/* Chat Panel */}
-      <ChatPanel topicId={topic.id} />
+      <ChatPanel lessonSlug={lessonSlug} topicSlug={topicSlug} />
     </div>
   );
 }

@@ -13,13 +13,6 @@ enum Role {
   ADMIN
 }
 
-enum TheoryBlockType {
-  TEXT
-  IMAGE
-  NOTATION
-  CODE_EXAMPLE
-}
-
 enum Instrument {
   GUITAR
   BASS
@@ -45,6 +38,7 @@ model User {
   role                 Role        @default(USER)
   preferredInstrument  Instrument?
   preferredLevel       Level?
+  showAllLevels        Boolean     @default(false)
   onboardingCompleted  Boolean     @default(false)
   createdAt            DateTime    @default(now())
   updatedAt            DateTime    @updatedAt
@@ -96,87 +90,32 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-model Lesson {
-  id          String     @id @default(cuid())
-  title       String
-  slug        String     @unique
-  description String?    @db.Text
-  instrument  Instrument @default(GUITAR)
-  level       Level      @default(beginner)
-  order       Int        @default(0)
-  published   Boolean    @default(false)
-  imageUrl    String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-
-  topics Topic[]
-
-  @@index([instrument, published, order])
-  @@map("lessons")
-}
-
-model Topic {
-  id          String   @id @default(cuid())
-  lessonId    String
-  title       String
-  slug        String
-  description String?  @db.Text
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  lesson       Lesson         @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-  theoryBlocks TheoryBlock[]
-  progress     UserProgress[]
-  chatMessages ChatMessage[]
-
-  @@unique([lessonId, slug])
-  @@index([lessonId, order])
-  @@map("topics")
-}
-
-model TheoryBlock {
-  id        String          @id @default(cuid())
-  topicId   String
-  type      TheoryBlockType @default(TEXT)
-  content   String          @db.Text
-  order     Int             @default(0)
-  metadata  Json?
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
-
-  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
-
-  @@index([topicId, order])
-  @@map("theory_blocks")
-}
-
 model UserProgress {
   id          String    @id @default(cuid())
   userId      String
-  topicId     String
+  lessonSlug  String
+  topicSlug   String
   completed   Boolean   @default(false)
   completedAt DateTime?
   createdAt   DateTime  @default(now())
 
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, topicId])
+  @@unique([userId, lessonSlug, topicSlug])
   @@map("user_progress")
 }
 
 model ChatMessage {
-  id        String   @id @default(cuid())
-  userId    String
-  topicId   String
-  role      String
-  content   String   @db.Text
-  createdAt DateTime @default(now())
+  id         String   @id @default(cuid())
+  userId     String
+  lessonSlug String
+  topicSlug  String
+  role       String
+  content    String   @db.Text
+  createdAt  DateTime @default(now())
 
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId, topicId, createdAt])
+  @@index([userId, lessonSlug, topicSlug, createdAt])
   @@map("chat_messages")
 }

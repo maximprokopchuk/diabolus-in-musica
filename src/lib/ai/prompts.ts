@@ -1,20 +1,15 @@
-import type { Topic, TheoryBlock, Lesson } from "@prisma/client";
+import type { LessonWithTopics, TopicContent } from "@/lib/content";
 
 export function buildChatSystemPrompt(
-  topic: Topic & { lesson: Lesson; theoryBlocks: TheoryBlock[] }
+  lesson: LessonWithTopics,
+  topic: TopicContent
 ): string {
-  const theoryContent = topic.theoryBlocks
-    .filter((b) => b.type === "TEXT")
-    .sort((a, b) => a.order - b.order)
-    .map((b) => b.content)
-    .join("\n\n");
-
-  return `Ты — опытный преподаватель теории музыки, специализирующийся на ${instrumentName(topic.lesson.instrument)}.
-Сейчас ученик изучает тему "${topic.title}" из урока "${topic.lesson.title}".
+  return `Ты — опытный преподаватель теории музыки, специализирующийся на ${instrumentName(lesson.instrument)}.
+Сейчас ученик изучает тему "${topic.title}" из урока "${lesson.title}".
 
 Вот теоретический материал этой темы:
 ---
-${theoryContent}
+${topic.content}
 ---
 
 Правила:
@@ -49,6 +44,7 @@ function instrumentName(instrument: string): string {
     PIANO: "фортепиано",
     UKULELE: "укулеле",
     GENERAL: "музыка (общее)",
+    DRUMS: "барабаны",
   };
   return names[instrument] || instrument;
 }

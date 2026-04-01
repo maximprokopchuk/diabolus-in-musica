@@ -10,6 +10,7 @@ declare module "next-auth" {
       role: string;
       preferredInstrument?: string | null;
       preferredLevel?: string | null;
+      showAllLevels?: boolean;
       onboardingCompleted?: boolean;
     };
   }
@@ -21,6 +22,7 @@ declare module "next-auth/jwt" {
     role: string;
     preferredInstrument?: string | null;
     preferredLevel?: string | null;
+    showAllLevels?: boolean;
     onboardingCompleted?: boolean;
   }
 }

@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Suspense } from "react";
 import { db } from "@/lib/db";
+import { getAllLessons } from "@/lib/content";
 import { getSession } from "@/lib/auth-guard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -75,47 +76,47 @@ export default async function ProgressPage({
   const rawLevel = params.level ?? userPrefs?.preferredLevel ?? "all";
   const activeLevel = VALID_LEVELS.includes(rawLevel as ValidLevel) ? rawLevel : "all";
 
-  const lessons = await db.lesson.findMany({
-    where: {
-      published: true,
-      ...(activeLevel !== "all" ? { level: activeLevel as ValidLevel } : {}),
-    },
-    include: {
-      topics: {
-        orderBy: { order: "asc" },
-        include: { progress: { where: { userId: session.user.id } } },
-      },
-    },
-    orderBy: { order: "asc" },
-  });
+  // Load all lessons from filesystem + user progress from DB
+  const allLessonsData = getAllLessons();
+  const filteredLessons =
+    activeLevel === "all"
+      ? allLessonsData
+      : allLessonsData.filter((l) => l.level === activeLevel);
 
-  const totalTopics = lessons.reduce((s, l) => s + l.topics.length, 0);
-  const totalCompleted = lessons.reduce(
-    (s, l) => s + l.topics.filter((t) => t.progress.some((p) => p.completed)).length, 0
+  const progressRows = await db.userProgress.findMany({
+    where: { userId: session.user.id },
+  });
+  const completedSet = new Set(
+    progressRows
+      .filter((p) => p.completed)
+      .map((p) => `${p.lessonSlug}::${p.topicSlug}`)
   );
-  const totalPercent = totalTopics > 0 ? Math.round((totalCompleted / totalTopics) * 100) : 0;
-  const completedLessons = lessons.filter(
-    (l) => l.topics.length > 0 && l.topics.every((t) => t.progress.some((p) => p.completed))
+  const completedDates = progressRows
+    .filter((p) => p.completed && p.completedAt)
+    .map((p) => p.completedAt!);
+
+  // Compute stats
+  const totalTopics = filteredLessons.reduce((s, l) => s + l.topics.length, 0);
+  const totalCompleted = filteredLessons.reduce(
+    (s, l) =>
+      s + l.topics.filter((t) => completedSet.has(`${l.slug}::${t.slug}`)).length,
+    0
+  );
+  const totalPercent =
+    totalTopics > 0 ? Math.round((totalCompleted / totalTopics) * 100) : 0;
+  const completedLessons = filteredLessons.filter(
+    (l) =>
+      l.topics.length > 0 &&
+      l.topics.every((t) => completedSet.has(`${l.slug}::${t.slug}`))
   ).length;
 
-  // Streak
-  const allCompletedDates = lessons.flatMap((l) =>
-    l.topics.flatMap((t) =>
-      t.progress.filter((p) => p.completed && p.completedAt).map((p) => p.completedAt!)
-    )
-  );
-  const streak = calcStreak(allCompletedDates);
+  const streak = calcStreak(completedDates);
 
-  // Last touched lesson (for Continue CTA)
-  const lastProgress = await db.userProgress.findFirst({
-    where: { userId: session.user.id, completed: true },
-    orderBy: { completedAt: "desc" },
-    include: {
-      topic: {
-        include: { lesson: { select: { slug: true, title: true } } },
-      },
-    },
-  });
+  // Last touched topic (for Continue CTA)
+  const lastProgress = progressRows
+    .filter((p) => p.completed && p.completedAt)
+    .sort((a, b) => b.completedAt!.getTime() - a.completedAt!.getTime())[0] ??
+    null;
 
   const motivational = getMotivational(totalCompleted);
 
@@ -128,7 +129,7 @@ export default async function ProgressPage({
         </div>
         {lastProgress && (
           <Link
-            href={`/lessons/${lastProgress.topic.lesson.slug}/${lastProgress.topic.slug}`}
+            href={`/lessons/${lastProgress.lessonSlug}/${lastProgress.topicSlug}`}
             className="shrink-0 inline-flex items-center gap-1.5 h-8 px-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium whitespace-nowrap hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all animate-in fade-in slide-in-from-bottom-2 duration-500 delay-150"
           >
             Продолжить
@@ -208,16 +209,18 @@ export default async function ProgressPage({
 
       {/* Per-lesson breakdown */}
       <div className="space-y-4">
-        {lessons.map((lesson, lessonIdx) => {
+        {filteredLessons.map((lesson, lessonIdx) => {
           const total = lesson.topics.length;
-          const completed = lesson.topics.filter((t) => t.progress.some((p) => p.completed)).length;
+          const completed = lesson.topics.filter((t) =>
+            completedSet.has(`${lesson.slug}::${t.slug}`)
+          ).length;
           const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
           const isDone = total > 0 && completed === total;
           if (completed === 0) return null;
 
           return (
             <Card
-              key={lesson.id}
+              key={lesson.slug}
               className={`animate-in fade-in slide-in-from-bottom-2 duration-300 ${isDone ? "border-green-500/30" : ""}`}
               style={{ animationDelay: `${Math.min(lessonIdx * 75, 400)}ms` }}
             >
@@ -255,10 +258,10 @@ export default async function ProgressPage({
                 <CardContent className="pt-0">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
                     {lesson.topics.map((topic) => {
-                      const done = topic.progress.some((p) => p.completed);
+                      const done = completedSet.has(`${lesson.slug}::${topic.slug}`);
                       return (
                         <Link
-                          key={topic.id}
+                          key={topic.slug}
                           href={`/lessons/${lesson.slug}/${topic.slug}`}
                           className="flex items-center gap-2 text-xs py-1 text-muted-foreground hover:text-foreground transition-colors"
                         >

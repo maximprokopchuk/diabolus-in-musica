@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { User, CheckCircle2 } from "lucide-react";
+import { User, CheckCircle2, Eye } from "lucide-react";
 
 const INSTRUMENTS = [
   { id: "GUITAR", label: "Гитара", emoji: "🎸" },
@@ -25,6 +25,7 @@ export default function ProfilePage() {
   const { data: session } = useSession();
   const [instrument, setInstrument] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
+  const [showAllLevels, setShowAllLevels] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -35,6 +36,7 @@ export default function ProfilePage() {
       .then((data) => {
         setInstrument(data.preferredInstrument ?? null);
         setLevel(data.preferredLevel ?? null);
+        setShowAllLevels(data.showAllLevels ?? false);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -44,7 +46,7 @@ export default function ProfilePage() {
     await fetch("/api/user/preferences", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ preferredInstrument: instrument, preferredLevel: level }),
+      body: JSON.stringify({ preferredInstrument: instrument, preferredLevel: level, showAllLevels }),
     });
     setSaving(false);
     setSaved(true);
@@ -158,6 +160,28 @@ export default function ProfilePage() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Show all levels toggle */}
+              <div>
+                <p className="text-sm font-medium mb-3">Фильтр уроков</p>
+                <button
+                  onClick={() => setShowAllLevels(!showAllLevels)}
+                  className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl border text-sm text-left transition-all hover:scale-[1.01] active:scale-[0.99] ${
+                    showAllLevels
+                      ? "border-primary bg-primary/10 text-foreground"
+                      : "border-border hover:border-primary/40 hover:bg-muted/50 text-muted-foreground"
+                  }`}
+                >
+                  <Eye className="h-4 w-4 shrink-0" />
+                  <div className="flex-1">
+                    <span className="font-medium">Показывать все уровни</span>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      По умолчанию открывать страницу уроков без фильтра по уровню
+                    </p>
+                  </div>
+                  {showAllLevels && <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />}
+                </button>
               </div>
 
               <Button onClick={handleSave} disabled={saving} className="w-full sm:w-auto">

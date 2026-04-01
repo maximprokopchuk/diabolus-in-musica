@@ -2,8 +2,21 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 import { registerSchema } from "@/lib/validators/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
+  const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+  const rl = rateLimit(`register:${ip}`, 5, 60_000); // 5 per minute
+  if (!rl.success) {
+    return NextResponse.json(
+      { error: "Слишком много попыток. Подождите немного." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(Math.ceil(rl.retryAfterMs / 1000)) },
+      }
+    );
+  }
+
   try {
     const body = await req.json();
     const data = registerSchema.parse(body);

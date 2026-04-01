@@ -38,7 +38,11 @@
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" ./node_modules/.bin/prisma db push --skip-generate)",
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" node_modules/.bin/tsx prisma/update-levels.ts)",
       "Bash(echo \"EXIT: $?\")",
-      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" node_modules/.bin/tsx prisma/check-lessons.ts)"
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" DIRECT_DATABASE_URL=\"postgresql://neondb_owner:npg_rcKIs0bt2gJY@ep-soft-cloud-akger44g-pooler.c-3.us-west-2.aws.neon.tech/neondb?sslmode=require&connect_timeout=60\" node_modules/.bin/tsx prisma/check-lessons.ts)",
+      "Bash(node_modules/.bin/tsx scripts/generate-content.ts)",
+      "Bash(node_modules/.bin/prisma db:*)",
+      "Bash(PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=\"да\" node_modules/.bin/prisma db push --force-reset)",
+      "Bash(find /Users/maksimprokopcuk/repo/diabolus-in-musica/src/app/api \\\\\\(-path *lessons* -o -path *topics* -o -path *theory* \\\\\\) -type f)"
     ]
   }
 }

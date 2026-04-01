@@ -8,7 +8,7 @@ export function NavProgress() {
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
   const prevPathname = useRef(pathname);
-  const timerRef = useRef<ReturnType<typeof setInterval>>();
+  const timerRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
   useEffect(() => {
     // Pathname changed — animation complete

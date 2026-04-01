@@ -17,11 +17,11 @@ const SUGGESTED = [
   "Какие типичные ошибки делают новички?",
 ];
 
-export function ChatPanel({ topicId }: { topicId: string }) {
+export function ChatPanel({ lessonSlug, topicSlug }: { lessonSlug: string; topicSlug: string }) {
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const { messages, isLoading, error, sendMessage, loadHistory } = useChat(topicId);
+  const { messages, isLoading, error, sendMessage, loadHistory } = useChat(lessonSlug, topicSlug);
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 

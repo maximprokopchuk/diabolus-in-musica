@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { getAllLessons } from "@/lib/content";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, FileText, Users } from "lucide-react";
 
@@ -6,11 +7,10 @@ export const dynamic = "force-dynamic";
 export const metadata = { title: "Админ-панель" };
 
 export default async function AdminPage() {
-  const [lessonsCount, topicsCount, usersCount] = await Promise.all([
-    db.lesson.count(),
-    db.topic.count(),
-    db.user.count(),
-  ]);
+  const [usersCount] = await Promise.all([db.user.count()]);
+  const allLessons = getAllLessons();
+  const lessonsCount = allLessons.length;
+  const topicsCount = allLessons.reduce((s, l) => s + l.topics.length, 0);
 
   const stats = [
     { label: "Уроков", value: lessonsCount, icon: BookOpen },

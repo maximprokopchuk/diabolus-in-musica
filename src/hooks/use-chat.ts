@@ -8,14 +8,14 @@ type Message = {
   content: string;
 };
 
-export function useChat(topicId: string) {
+export function useChat(lessonSlug: string, topicSlug: string) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const loadHistory = useCallback(async () => {
     try {
-      const res = await fetch(`/api/chat?topicId=${topicId}`);
+      const res = await fetch(`/api/chat?lessonSlug=${lessonSlug}&topicSlug=${topicSlug}`);
       if (res.ok) {
         const data = await res.json();
         setMessages(
@@ -29,7 +29,7 @@ export function useChat(topicId: string) {
     } catch {
       // silently fail on history load
     }
-  }, [topicId]);
+  }, [lessonSlug, topicSlug]);
 
   const sendMessage = useCallback(
     async (content: string) => {
@@ -54,7 +54,7 @@ export function useChat(topicId: string) {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ topicId, message: content }),
+          body: JSON.stringify({ lessonSlug, topicSlug, message: content }),
         });
 
         if (!res.ok) {
@@ -102,7 +102,7 @@ export function useChat(topicId: string) {
         setIsLoading(false);
       }
     },
-    [topicId]
+    [lessonSlug, topicSlug]
   );
 
   return { messages, isLoading, error, sendMessage, loadHistory };
