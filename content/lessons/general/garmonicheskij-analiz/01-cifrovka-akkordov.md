@@ -42,7 +42,7 @@ I — V — vi — IV
 
 ```
 Fm — Bb — Ab — Db
-i  — iv — III — VI
+i  — IV — III — VI
 ```
 
 ## Как определить ступень
