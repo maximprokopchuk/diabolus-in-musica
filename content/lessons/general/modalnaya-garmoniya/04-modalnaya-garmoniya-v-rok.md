@@ -17,7 +17,7 @@ order: 4
 | Песня | Прогрессия | Тональность |
 |-------|-----------|-------------|
 | «Sympathy for the Devil» | E — D — A — E | E микс. |
-| «Sweet Child O' Mine» (припев) | C — D — G | G микс. (D = ♭VII? нет, но принцип) |
+| «Norwegian Wood» | E — D — A | E микс. (D = ♭VII) |
 | «Sweet Home Alabama» | D — C — G | G микс. |
 | «Hey Jude» (куплет) | F — C — Bb — F | F микс. (Bb = ♭VII) |
 
