@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     template: "%s | Diabolus in Musica",
   },
   description: "Изучайте теорию музыки с AI-ассистентом. Уроки, упражнения и интерактивный чат.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
