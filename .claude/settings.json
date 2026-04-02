@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(xargs ls:*)",
-      "Bash(find /Users/maksimprokopcuk/repo/diabolus-in-musica -maxdepth 2 -name tailwind.config.* -o -name .env*)"
+      "Bash(find /Users/maksimprokopcuk/repo/diabolus-in-musica -maxdepth 2 -name tailwind.config.* -o -name .env*)",
+      "WebFetch(domain:unsplash.com)",
+      "Read(//tmp/unsplash_check/**)",
+      "Read(//private/tmp/unsplash_check/**)",
+      "Read(//tmp/unsplash_check2/**)",
+      "Read(//private/tmp/unsplash_check2/**)",
+      "Read(//tmp/unsplash_check3/**)",
+      "Read(//private/tmp/unsplash_check3/**)",
+      "Read(//tmp/unsplash_check4/**)",
+      "Read(//private/tmp/unsplash_check4/**)"
     ]
   }
 }
