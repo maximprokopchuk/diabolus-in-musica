@@ -88,7 +88,7 @@ order: 4
 **«Layla»** (Derek and the Dominoes, 1970) — пик слайд-игры Duane. Его соло на этом треке часто называют лучшим гитарным слайд-выступлением в истории рока.
 
 Другие ключевые записи:
-- «Little Wing» (live Fillmore East version) — слайд-каверы Jimmy Nolen
+- «Little Wing» (live Fillmore East version) — слайд-кавер Jimi Hendrix
 - «Statesboro Blues» — мощный рок-слайд
 - «Dreams» (Allman Brothers Band) — атмосферный, медленный
 
