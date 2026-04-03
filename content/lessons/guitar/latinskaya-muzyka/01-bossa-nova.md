@@ -12,7 +12,7 @@ order: 1
 
 Ключевые фигуры:
 - **João Gilberto** — создатель характерного гитарного паттерна, «отец» bossa nova
-- **Antônio Carlos Jobim** — главный композитор («Girl from Ipanema», «Corcovado», «The Girl from Ipanema»)
+- **Antônio Carlos Jobim** — главный композитор («Garota de Ipanema», «Corcovado», «Água de Beber»)
 - **Stan Getz** — американский саксофонист, популяризировавший bossa на Западе
 
 ## Характерный ритмический паттерн

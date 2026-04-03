@@ -81,7 +81,7 @@ order: 5
 
 ### На пересечении стилей:
 - **Al Di Meola** — латинская виртуозность + джаз-рок
-- **John McLaughlin** — фламенко + джаз (альбом «Friday Night in San Francisco»)
+- **John McLaughlin** — фламенко + джаз (совместный альбом «Friday Night in San Francisco» с Paco de Lucía и Al Di Meola, 1980)
 
 ## Общие черты
 

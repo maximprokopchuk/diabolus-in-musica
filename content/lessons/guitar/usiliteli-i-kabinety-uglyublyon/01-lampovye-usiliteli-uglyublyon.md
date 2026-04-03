@@ -53,7 +53,7 @@ order: 1
 | **6L6** | Чистый, широкий, американский звук | Fender, Mesa/Boogie |
 | **EL84** | Яркий, сжатый, «Vox-характер» | Vox AC30, AC15 |
 | **KT66** | Мягкий, тёплый | Marshall JTM45, оригинальный Bluesbreaker |
-| **6550/KT88** | Высокая мощность, плотный бас | Hiwatt DR103, Sound City |
+| **6550/KT88** | Высокая мощность, плотный бас | Marshall Major, Sound City, некоторые Ampeg |
 
 **Power Amp Distortion (Перегруз оконечного каскада):**
 
