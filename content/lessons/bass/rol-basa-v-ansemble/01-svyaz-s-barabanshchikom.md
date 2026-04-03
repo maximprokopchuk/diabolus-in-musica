@@ -69,18 +69,18 @@ Lock: ✓           ✓  ✓
 
 ### Великие ритм-секции
 
-| Барабанщик | Бас-гитарист | Группа |
-|-----------|-------------|--------|
+| Барабанщик | Бас-гитарист / ключевой партнёр | Группа |
+|-----------|--------------------------------|--------|
 | John Bonham | John Paul Jones | Led Zeppelin |
 | Neil Peart | Geddy Lee | Rush |
-| Stuart Copeland | Sting | The Police |
-| Tony Allen | Fela Kuti (или Bootsy Collins) | Africa 70 |
-| Clyde Stubblefield | Bootsy Collins | James Brown |
+| Stewart Copeland | Sting | The Police |
+| Tony Allen | Fela Kuti (бандлидер, саксофон) | Africa 70 |
+| Clyde Stubblefield | Bernard Odum | James Brown |
 | Mitch Mitchell | Noel Redding | Jimi Hendrix Experience |
 
 ### Clyde Stubblefield & James Brown
 
-Пример идеальной ритм-секции в фанке. Stubblefield (барабанщик) и Bootsy Collins (бас) создали грув «Funky Drummer», который сэмплировался более 200 раз. Их lock — буквально один ритмический организм.
+Пример идеальной ритм-секции в фанке. Stubblefield (барабанщик) и Bernard Odum (бас) создали грув «Funky Drummer» (1969), который сэмплировался более 200 раз. Их lock — буквально один ритмический организм. (Bootsy Collins присоединился к James Brown в 1970 году — уже после записи «Funky Drummer».)
 
 ## Практика совместной игры
 

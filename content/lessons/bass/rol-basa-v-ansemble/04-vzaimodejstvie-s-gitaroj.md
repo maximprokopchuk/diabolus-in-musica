@@ -19,7 +19,7 @@ order: 4
 Бас и гитара играют **одну и ту же линию** в разных октавах. Это создаёт мощный, монолитный звук — особенно в металле и хард-роке.
 
 **Примеры:**
-- Deep Purple, «Smoke on the Water» — рифф играется гитарой и басом в унисон
+- Deep Purple, «Highway Star» — бас Roger Glover дублирует гитарный рифф в октаву
 - Black Sabbath, «Iron Man» — монолитная унисонная фигура
 - Rage Against the Machine — Tim Commerford дублирует риффы гитары
 
