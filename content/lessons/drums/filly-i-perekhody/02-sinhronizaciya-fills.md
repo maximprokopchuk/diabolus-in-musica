@@ -109,7 +109,7 @@ order: 2
 4. Какой звук (томы, малый, комбинация)?
 
 Рекомендованные песни для анализа:
-- **Phil Collins — In the Air Tonight** (один из самых известных fills в истории рока — на 3:22)
+- **Phil Collins — In the Air Tonight** (один из самых известных fills в истории рока — на 3:40)
 - **John Bonham — When the Levee Breaks** (тяжёлые fills с большим пространством)
 - **Dave Grohl — Everlong** (точные, энергичные переходы)
 

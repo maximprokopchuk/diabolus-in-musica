@@ -9,7 +9,7 @@ order: 3
 ## Что такое double bass
 
 **Double bass** (двойная бочка) — использование двух педалей бочки:
-- Двух **отдельных барабанов-бочек** (классический вариант, popularized by Ginger Baker и Keith Moon)
+- Двух **отдельных барабанов-бочек** (классический вариант, popularized by Louie Bellson и Ginger Baker)
 - **Одной бочки с двумя педалями** (double pedal — современный стандарт)
 
 ## Double Pedal vs Two Bass Drums

@@ -62,7 +62,7 @@ Miller написал, аранжировал и продюсировал аль
 ## Продюсирование
 
 Marcus Miller — успешный продюсер за пределами джаза:
-- Написал хиты для **Luther Vandross**: «Never Too Much», «A House Is Not a Home»
+- Написал хит для **Luther Vandross**: «Never Too Much»; продюсировал и аранжировал многие его альбомы, включая записи с кавером «A House Is Not a Home» (оригинал — Burt Bacharach / Hal David)
 - Продюсировал альбомы David Sanborn
 - Работал с артистами стиля R&B и soul
 
