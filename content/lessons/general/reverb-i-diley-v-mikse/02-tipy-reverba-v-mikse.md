@@ -105,7 +105,7 @@ order: 2
 - Менее гибкий, чем алгоритмический (нельзя менять decay, не меняя тембр)
 
 **Популярные IR-библиотеки:**
-- Altiverb (Austrian Audio)
+- Altiverb (Audio Ease)
 - Spaces II (EastWest)
 - LiquidSonics Cinematic Rooms
 - Бесплатные IR от Impulse Record

@@ -124,8 +124,8 @@ order: 5
 Используется Apple Music, YouTube, Spotify на низких битрейтах. Качество лучше, чем MP3 при том же битрейте.
 
 - Apple Music: AAC 256 kbps
-- Spotify Free: AAC 128 kbps
-- Spotify Premium: OGG Vorbis 320 kbps или AAC 256 kbps
+- Spotify Free: OGG Vorbis 128 kbps (десктоп/веб); AAC 128 kbps (iOS)
+- Spotify Premium: OGG Vorbis 320 kbps (десктоп/Android); AAC 256 kbps (iOS)
 
 ## Рекомендуемый Workflow экспорта
 

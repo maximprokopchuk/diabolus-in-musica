@@ -28,7 +28,7 @@ order: 2
 | Tidal | −14 LUFS | −1 dBTP |
 | Amazon Music | −14 LUFS | −2 dBTP |
 | SoundCloud | −14 LUFS | −1 dBTP |
-| CD (EBU R128) | −23 LUFS | −1 dBTP |
+| CD (нет официального LUFS-стандарта) | −9 до −14 LUFS | −0.3 dBFS |
 | Broadcast TV (EBU R128) | −23 LUFS | −1 dBTP |
 
 **Рекомендуемые параметры для стриминга:**
