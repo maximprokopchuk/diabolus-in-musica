@@ -119,3 +119,15 @@ model ChatMessage {
   @@index([userId, lessonSlug, topicSlug, createdAt])
   @@map("chat_messages")
 }
+
+model ErrorReport {
+  id          String   @id @default(cuid())
+  lessonSlug  String
+  topicSlug   String?
+  description String   @db.Text
+  pageUrl     String?
+  resolved    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@map("error_reports")
+}

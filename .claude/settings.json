@@ -11,7 +11,12 @@
       "Read(//tmp/unsplash_check3/**)",
       "Read(//private/tmp/unsplash_check3/**)",
       "Read(//tmp/unsplash_check4/**)",
-      "Read(//private/tmp/unsplash_check4/**)"
+      "Read(//private/tmp/unsplash_check4/**)",
+      "Read(//Users/maksimprokopcuk/repo/diabolus-in-musica/**)",
+      "Bash(claude --version)",
+      "Bash(npm update:*)",
+      "Read(//Users/maksimprokokcuk/repo/diabolus-in-musica/content/lessons/general/**)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json','utf8'\\)\\)\")"
     ]
   }
 }

@@ -5,6 +5,7 @@ import { getSession } from "@/lib/auth-guard";
 import { db } from "@/lib/db";
 import { TheoryBlockRenderer } from "@/components/lessons/theory-block-renderer";
 import { TopicCompletionButton } from "@/components/progress/topic-completion-button";
+import { ReportErrorButton } from "@/components/lessons/report-error-button";
 import { ChatPanel } from "@/components/chat/chat-panel";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -95,6 +96,14 @@ export default async function TopicPage({
       </div>
 
       <Separator className="my-8" />
+
+      <div className="mb-6 animate-in fade-in slide-in-from-bottom-2 duration-400 delay-250">
+        <ReportErrorButton
+          lessonSlug={lessonSlug}
+          topicSlug={topicSlug}
+          pageUrl={`/lessons/${lessonSlug}/${topicSlug}`}
+        />
+      </div>
 
       <div className="flex items-center justify-between animate-in fade-in slide-in-from-bottom-2 duration-400 delay-300">
         <div>
