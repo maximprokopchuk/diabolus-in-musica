@@ -31,7 +31,6 @@ order: 4
 |-------|---------|
 | «Oye Como Va» (Santana) | Am — D (i — IV маж.) |
 | «Evil Ways» (Santana) | Am — D7 |
-| «Smoke on the Water» | Gm — строй лада |
 | «Breathe» (Pink Floyd) | Em — A (i — IV маж.) |
 
 ## Фригийский рок/метал
