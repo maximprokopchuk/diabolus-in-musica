@@ -30,7 +30,7 @@ Mic Level (~−50 дБu) → [ПРЕАМП +40–60 дБ gain] → Line Level (+
 
 **Применение:** запись, где важна точность — акустические инструменты, вокал, оркестр, когда вы хотите «честный» звук источника.
 
-**Примеры:** Millennia HV-3D, Grace Design m101, Neve 1073N (компромисс), API 512c
+**Примеры:** Millennia HV-3D, Grace Design m101, Focusrite ISA One
 
 ### Окрашенные преампы (Colored / Character)
 
