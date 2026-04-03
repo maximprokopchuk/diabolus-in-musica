@@ -38,11 +38,11 @@ C — G — Am — F
 I — V — vi — IV
 ```
 
-Песня «Smells Like Teen Spirit» (Nirvana), тональность F минор:
+Песня «Smells Like Teen Spirit» (Nirvana), тональность F# минор:
 
 ```
-Fm — Bb — Ab — Db
-i  — iv — III — VI
+F#m — B — A — D
+i   — iv — III — VI
 ```
 
 ## Как определить ступень

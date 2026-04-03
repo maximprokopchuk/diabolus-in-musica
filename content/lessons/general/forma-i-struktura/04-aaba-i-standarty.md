@@ -26,7 +26,7 @@ A (8 тактов) — A (8 тактов) — B (8 тактов) — A (8 так
 | Стандарт | Тональность | Особенности |
 |----------|-------------|-------------|
 | «I Got Rhythm» | Bb | Основа «Rhythm Changes» |
-| «Somewhere Over the Rainbow» | Eb | Классический Tin Pan Alley |
+| «Somewhere Over the Rainbow» | Ab | Классический Tin Pan Alley |
 | «Take the A Train» | C | Тема Дюка Эллингтона |
 | «Satin Doll» | C | С ii-V оборотами |
 | «Yesterday» (Beatles) | F | Поп-адаптация AABA |
