@@ -59,7 +59,7 @@ order: 1
 
 **Классические педали:**
 - **Electro-Harmonix Big Muff Pi** — стандарт фузза (Jimi Hendrix, David Gilmour, Jack White)
-- **Dallas Arbiter Fuzz Face** — оригинальная педаль Хендрикса (NPN германий)
+- **Dallas Arbiter Fuzz Face** — оригинальная педаль Хендрикса (PNP германий)
 - **Zvex Fuzz Factory** — экстремальный, нестабильный фузз
 
 ## Сравнение

@@ -52,11 +52,11 @@ D-A-D-G-B-E  (6-я струна опущена на тон)
 ### Open G
 
 ```
-D-G-D-G-B-D  (или G на басу: G-G-D-G-B-D)
+D-G-D-G-B-D
 ```
 
 - Открытые струны = G мажор
-- Слайд-гитара (Robert Johnson, Keith Richards)
+- Слайд-гитара (Keith Richards, Ry Cooder)
 - «Start Me Up», «Brown Sugar» (Rolling Stones)
 
 ### Open D
