@@ -46,7 +46,7 @@ order: 1
 
 **Известные применения:**
 - Kurt Cobain (Nirvana) — Small Clone
-- Andy Summers (Police) — CE-1 в «Message in a Bottle»
+- Andy Summers (Police) — CE-1 на чистых, хорусовых пассажах (например, «Every Little Thing She Does Is Magic»)
 - John Frusciante (RHCP) — Boss CE-1 / CE-2
 
 ### Как использовать хорус
@@ -88,6 +88,7 @@ order: 1
 
 **Известные применения:**
 - Eddie Van Halen — «Unchained» (MXR Flanger)
+- Andy Summers (Police) — «Message in a Bottle» (Electric Mistress)
 - Jimi Hendrix — некоторые экспериментальные треки
 - Heart (Ann Wilson, Nancy Wilson)
 
@@ -111,16 +112,16 @@ order: 1
 
 | Ступени | Характер |
 |---------|---------|
-| **4-stage** | Мягкий, «нежный» (MXR Phase 45) |
+| **4-stage** | Мягкий, «нежный» (MXR Phase 45, MXR Phase 90) |
 | **6-stage** | Баланс между мягкостью и характером |
-| **8-stage** | Насыщенный, «синтезаторный» (MXR Phase 90) |
+| **8-stage** | Насыщенный, «синтезаторный» |
 | **12-stage** | Максимально насыщенный |
 
 ### Классические педали фейзера
 
 | Педаль | Ступени | Характер |
 |--------|---------|---------|
-| **MXR Phase 90 (M101)** | 4 (orange) → 8 | Самый популярный, знаменитый оранжевый корпус |
+| **MXR Phase 90 (M101)** | 4 | Самый популярный, знаменитый оранжевый корпус |
 | **MXR Phase 45** | 4 | Мягкий, тонкий |
 | **Electro-Harmonix Small Stone** | 4 | Тёплый, «жирный» |
 | **Boss PH-3** | Varies | Современный, много режимов |
@@ -128,8 +129,8 @@ order: 1
 
 **Известные применения:**
 - Eddie Van Halen — «Eruption» (Phase 90 — знаменитый «Script» оригинал)
-- Carlos Santana — «Oye Como Va» (Small Stone)
-- David Gilmour — «Have a Cigar»
+- Carlos Santana — «Oye Como Va» (MXR Phase 90)
+- David Gilmour — «Any Colour You Like» (Pink Floyd)
 
 ### Uni-Vibe
 

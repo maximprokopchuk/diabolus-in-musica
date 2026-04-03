@@ -132,7 +132,7 @@ Wah использует **индукторный (wah) фильтр** с доб
 
 **Envelope Filter** — более продвинутый auto-wah. Следует за огибающей (envelope) сигнала и управляет фильтром.
 
-**Mu-Tron III** (Beussink/EH, 1972) — эталонный envelope filter. Звук: Bootsy Collins, Stevie Wonder («Higher Ground»), Herbie Hancock.
+**Mu-Tron III** (Mike Beigel / Musitronics, 1972) — эталонный envelope filter. Звук: Bootsy Collins, Stevie Wonder («Higher Ground»), Herbie Hancock.
 
 **Современные педали:**
 - **EHX Q-Tron** — реплика Mu-Tron
