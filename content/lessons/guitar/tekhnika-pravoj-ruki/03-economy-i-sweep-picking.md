@@ -83,7 +83,7 @@ A|---7---|           A|---2---|
 ### Продвинутые элементы
 
 - **Hammer-on at the top** — на верхней струне добавляется hammer-on для украшения
-- **Tapping in sweep** — тэппинг на вершине арпеджио (Joe Stump, Yngwie Malmsteen)
+- **Tapping in sweep** — тэппинг на вершине арпеджио (Joe Stump, Jason Becker)
 - **Economy через гамму** — Frank Gambale
 
 **Гитаристы-мастера sweep picking:** Yngwie Malmsteen (неоклассика), Jason Becker, Frank Gambale, Rusty Cooley.

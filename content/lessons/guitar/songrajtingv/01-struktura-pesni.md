@@ -23,7 +23,7 @@ order: 1
 
 **Пре-хорус** — переходный раздел между куплетом и припевом. Функция: **строить ожидание**.
 
-Нарастает гармоническое и ритмическое напряжение — слушатель «чувствует», что сейчас что-то произойдёт. Хит-пример: «Rolling in the Deep» (Adele) — пре-хорус «We could have had it all...».
+Нарастает гармоническое и ритмическое напряжение — слушатель «чувствует», что сейчас что-то произойдёт. Хит-пример: «Rolling in the Deep» (Adele) — пре-хорус «See how I leave with every piece of you...».
 
 ### Chorus (припев)
 
@@ -54,7 +54,7 @@ order: 1
 Intro → Verse 1 → Chorus → Verse 2 → Chorus → Bridge → Chorus → Outro
 ```
 
-Стандарт поп- и рок-музыки. «Bohemian Rhapsody», «Hey Jude», «Smells Like Teen Spirit».
+Стандарт поп- и рок-музыки. «Back in Black» (AC/DC), «Smells Like Teen Spirit» (Nirvana), «Mr. Brightside» (The Killers).
 
 ### AABA (32-тактовая форма)
 

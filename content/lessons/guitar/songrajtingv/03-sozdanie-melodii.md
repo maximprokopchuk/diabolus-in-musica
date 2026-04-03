@@ -28,7 +28,7 @@ order: 3
 | **Эмоциональная точность** | Выражает суть песни |
 
 **Примеры великих хуков:**
-- «Yesterday» (Beatles) — «Yes-ter-daaaaay» — восходящая малая секста
+- «Yesterday» (Beatles) — «Yes-ter-daaaaay» — нисходящий контур с задержанной нотой
 - «Purple Rain» (Prince) — одна только нота, held
 - «Smells Like Teen Spirit» (Nirvana) — риффовый хук, не только вокальный
 

@@ -27,7 +27,7 @@ order: 2
 После Meshuggah в конце 2000-х сформировался целый жанр — **djent** (onomatopoeic слово для звука заглушённой 8-струнной под высоким гейном).
 
 **Ключевые артисты djent:**
-- **Periphery** — Misha Mansoor (PolyphiA) популяризировал жанр
+- **Periphery** — Misha Mansoor (известный под ником «Bulb») популяризировал жанр
 - **Animals as Leaders** — Tosin Abasi, jazzcore + djent
 - **Tesseract** — прогрессивный djent с чистыми вокалами
 - **Plini** — более мелодичный подход
