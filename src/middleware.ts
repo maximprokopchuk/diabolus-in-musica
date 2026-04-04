@@ -10,6 +10,10 @@ export default withAuth(
       return NextResponse.redirect(new URL("/", req.url));
     }
 
+    if ((pathname.startsWith("/login") || pathname.startsWith("/register")) && token) {
+      return NextResponse.redirect(new URL("/lessons", req.url));
+    }
+
     return NextResponse.next();
   },
   {
@@ -33,5 +37,12 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ["/admin/:path*", "/profile/:path*", "/progress/:path*", "/onboarding"],
+  matcher: [
+    "/admin/:path*",
+    "/profile/:path*",
+    "/progress/:path*",
+    "/onboarding",
+    "/login",
+    "/register",
+  ],
 };
