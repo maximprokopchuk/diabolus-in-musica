@@ -12,3 +12,9 @@ export async function toggleResolved(id: string, resolved: boolean) {
   });
   revalidatePath("/admin/error-reports");
 }
+
+export async function deleteReport(id: string) {
+  await requireAdmin();
+  await db.errorReport.delete({ where: { id } });
+  revalidatePath("/admin/error-reports");
+}
