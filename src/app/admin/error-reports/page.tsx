@@ -28,6 +28,8 @@ const STATUS_OPTIONS = [
 const SORT_OPTIONS = [
   { value: "newest", label: "Сначала новые" },
   { value: "oldest", label: "Сначала старые" },
+  { value: "open", label: "Сначала открытые" },
+  { value: "resolved", label: "Сначала закрытые" },
 ];
 
 export default async function ErrorReportsPage({
@@ -47,9 +49,15 @@ export default async function ErrorReportsPage({
     status === "resolved" ? { resolved: true } :
     {};
 
+  const orderBy =
+    sort === "oldest" ? { createdAt: "asc" as const } :
+    sort === "open" ? { resolved: "asc" as const } :
+    sort === "resolved" ? { resolved: "desc" as const } :
+    { createdAt: "desc" as const };
+
   const reports = await db.errorReport.findMany({
     where,
-    orderBy: { createdAt: sort === "oldest" ? "asc" : "desc" },
+    orderBy,
   });
 
   const [total, open, resolved] = await Promise.all([
