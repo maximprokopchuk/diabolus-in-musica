@@ -22,8 +22,28 @@ export default async function AdminLayout({
   ];
 
   return (
-    <div className="flex min-h-[calc(100vh-8rem)]">
-      <aside className="w-56 border-r p-4 hidden md:block">
+    <div className="flex flex-col md:flex-row min-h-[calc(100vh-8rem)]">
+      {/* Mobile nav — horizontal scrollable strip */}
+      <nav className="md:hidden flex overflow-x-auto gap-1 border-b px-3 py-2 shrink-0">
+        {adminNav.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 text-sm rounded-md hover:bg-muted transition-colors shrink-0 relative"
+          >
+            <item.icon className="h-4 w-4 shrink-0" />
+            {item.label}
+            {item.badge !== null && (
+              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-medium text-destructive-foreground">
+                {item.badge}
+              </span>
+            )}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Desktop sidebar */}
+      <aside className="hidden md:block w-56 border-r p-4 shrink-0">
         <h2 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-4">
           Админ-панель
         </h2>
@@ -45,7 +65,8 @@ export default async function AdminLayout({
           ))}
         </nav>
       </aside>
-      <div className="flex-1 p-6">{children}</div>
+
+      <div className="flex-1 p-4 md:p-6 min-w-0">{children}</div>
     </div>
   );
 }

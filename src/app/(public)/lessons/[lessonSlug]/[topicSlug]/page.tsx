@@ -105,16 +105,7 @@ export default async function TopicPage({
         />
       </div>
 
-      <div className="flex items-center justify-between animate-in fade-in slide-in-from-bottom-2 duration-400 delay-300">
-        <div>
-          {prevTopic && (
-            <Button variant="ghost" render={<Link href={`/lessons/${lesson.slug}/${prevTopic.slug}`} />}>
-              <ChevronLeft className="mr-1 h-4 w-4" />
-              {prevTopic.title}
-            </Button>
-          )}
-        </div>
-
+      <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-2 duration-400 delay-300">
         {session?.user && (
           <TopicCompletionButton
             lessonSlug={lessonSlug}
@@ -122,14 +113,23 @@ export default async function TopicPage({
             initialCompleted={isCompleted}
           />
         )}
-
-        <div>
-          {nextTopic && (
-            <Button variant="ghost" render={<Link href={`/lessons/${lesson.slug}/${nextTopic.slug}`} />}>
-              {nextTopic.title}
-              <ChevronRight className="ml-1 h-4 w-4" />
-            </Button>
-          )}
+        <div className="flex items-center justify-between gap-2">
+          <div className="min-w-0">
+            {prevTopic && (
+              <Button variant="ghost" className="max-w-[160px] sm:max-w-none" render={<Link href={`/lessons/${lesson.slug}/${prevTopic.slug}`} />}>
+                <ChevronLeft className="mr-1 h-4 w-4 shrink-0" />
+                <span className="truncate">{prevTopic.title}</span>
+              </Button>
+            )}
+          </div>
+          <div className="min-w-0">
+            {nextTopic && (
+              <Button variant="ghost" className="max-w-[160px] sm:max-w-none" render={<Link href={`/lessons/${lesson.slug}/${nextTopic.slug}`} />}>
+                <span className="truncate">{nextTopic.title}</span>
+                <ChevronRight className="ml-1 h-4 w-4 shrink-0" />
+              </Button>
+            )}
+          </div>
         </div>
       </div>
 
