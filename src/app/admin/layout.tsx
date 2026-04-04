@@ -1,17 +1,26 @@
 import Link from "next/link";
-import { BookOpen, Users, Settings } from "lucide-react";
+import { BookOpen, Users, Settings, AlertCircle } from "lucide-react";
+import { db } from "@/lib/db";
 
-const adminNav = [
-  { href: "/admin", label: "Обзор", icon: Settings },
-  { href: "/admin/lessons", label: "Уроки", icon: BookOpen },
-  { href: "/admin/users", label: "Пользователи", icon: Users },
-];
-
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const unresolvedCount = await db.errorReport.count({ where: { resolved: false } });
+
+  const adminNav = [
+    { href: "/admin", label: "Обзор", icon: Settings, badge: null },
+    { href: "/admin/lessons", label: "Уроки", icon: BookOpen, badge: null },
+    { href: "/admin/users", label: "Пользователи", icon: Users, badge: null },
+    {
+      href: "/admin/error-reports",
+      label: "Репорты ошибок",
+      icon: AlertCircle,
+      badge: unresolvedCount > 0 ? unresolvedCount : null,
+    },
+  ];
+
   return (
     <div className="flex min-h-[calc(100vh-8rem)]">
       <aside className="w-56 border-r p-4 hidden md:block">
@@ -25,8 +34,13 @@ export default function AdminLayout({
               href={item.href}
               className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
             >
-              <item.icon className="h-4 w-4" />
-              {item.label}
+              <item.icon className="h-4 w-4 shrink-0" />
+              <span className="flex-1">{item.label}</span>
+              {item.badge !== null && (
+                <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-destructive px-1 text-[11px] font-medium text-destructive-foreground">
+                  {item.badge}
+                </span>
+              )}
             </Link>
           ))}
         </nav>
