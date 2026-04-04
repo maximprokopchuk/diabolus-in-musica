@@ -98,7 +98,7 @@ function loadAll(): {
         level: String(data.level ?? "beginner"),
         order: Number(data.order ?? 0),
         published: Boolean(data.published),
-        topics,
+        topics: topics.sort((a, b) => a.order - b.order),
       });
     }
   }

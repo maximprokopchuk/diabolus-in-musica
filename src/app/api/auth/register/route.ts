@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 import { registerSchema } from "@/lib/validators/auth";
 import { rateLimit } from "@/lib/rate-limit";
+import { z } from "zod";
 
 export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for") ?? "unknown";
@@ -47,7 +48,7 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (error) {
-    if (error instanceof Error && error.name === "ZodError") {
+    if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Некорректные данные" }, { status: 400 });
     }
     return NextResponse.json({ error: "Ошибка сервера" }, { status: 500 });

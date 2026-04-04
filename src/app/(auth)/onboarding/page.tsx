@@ -32,24 +32,30 @@ function Spinner({ className = "h-4 w-4" }: { className?: string }) {
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const { update } = useSession();
+  const { data: session, update } = useSession();
   const [step, setStep] = useState<"instrument" | "level">("instrument");
   const [instrument, setInstrument] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
 
+  // Redirect if already onboarded
+  if ((session?.user as { onboardingCompleted?: boolean })?.onboardingCompleted) {
+    router.replace("/lessons");
+    return null;
+  }
+
   async function handleFinish(skipLevel = false) {
     setSaving(true);
     setSaveError(null);
+    const payload: Record<string, unknown> = { preferredLevel: skipLevel ? null : level };
+    // Only include instrument if user actually selected one
+    if (instrument !== null) payload.preferredInstrument = instrument;
     try {
       const res = await fetch("/api/user/preferences", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          preferredInstrument: instrument,
-          preferredLevel: skipLevel ? null : level,
-        }),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
